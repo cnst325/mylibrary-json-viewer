@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLibrary JSON Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 헤더 -->
+        <header class="header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="../assets/icon.png" alt="MyLibrary" style="width: 48px; height: 48px; object-fit: contain;">
+                <h1 style="margin: 0;" data-i18n="appTitle">MyLibrary JSON Viewer</h1>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <select id="languageSelect" class="language-select" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ddd; background: white; cursor: pointer;">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                </select>
+                <button id="openFileBtn" class="btn-primary" data-i18n="openFile">📂 Open JSON File</button>
+                <button id="exportJsonBtn" class="btn-secondary hidden" data-i18n="exportJson">💾 Export JSON</button>
+                <button id="exportCsvBtn" class="btn-secondary hidden" data-i18n="exportCsv">📊 Export CSV</button>
+            </div>
+        </header>
+
+        <!-- 파일 정보 -->
+        <div id="fileInfo" class="file-info hidden">
+            <div class="info-item">
+                <span class="label">File Name:</span>
+                <span id="fileName" class="value"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Path:</span>
+                <span id="filePath" class="value"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Backup Date:</span>
+                <span id="backupDate" class="value"></span>
+            </div>
+            <div class="backup-notice">
+                <span class="notice-icon">ℹ️</span>
+                <span class="notice-text">All loan status and overdue information are displayed based on the backup creation time.</span>
+            </div>
+        </div>
+
+        <!-- 메인 컨텐츠 -->
+        <main id="mainContent" class="main-content hidden">
+            <!-- 탭 네비게이션 -->
+            <nav class="tabs">
+                <button class="tab active" data-tab="books">
+                    📖 Collection (<span id="booksCount">0</span>)
+                </button>
+                <button class="tab" data-tab="loans">
+                    📤 Loans (<span id="loansCount">0</span>)
+                </button>
+                <button class="tab" data-tab="borrowers">
+                    👥 Borrowers (<span id="borrowersCount">0</span>)
+                </button>
+                <button class="tab" data-tab="wishlist">
+                    ⭐ Wishlist (<span id="wishlistCount">0</span>)
+                </button>
+                <button class="tab" data-tab="locations">
+                    📍 Locations (<span id="locationsCount">0</span>)
+                </button>
+            </nav>
+
+            <!-- 검색 및 필터 -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                <button id="clearSearch" class="btn-secondary">🔄 Clear</button>
+            </div>
+
+            <!-- 탭 컨텐츠 -->
+            <div id="booksTab" class="tab-content active">
+                <div id="booksTable" class="data-table"></div>
+            </div>
+
+            <div id="loansTab" class="tab-content">
+                <div id="loansTable" class="data-table"></div>
+            </div>
+
+            <div id="borrowersTab" class="tab-content">
+                <div id="borrowersTable" class="data-table"></div>
+            </div>
+
+            <div id="wishlistTab" class="tab-content">
+                <div id="wishlistTable" class="data-table"></div>
+            </div>
+
+            <div id="locationsTab" class="tab-content">
+                <div id="locationsTable" class="data-table"></div>
+            </div>
+        </main>
+
+        <!-- 초기 화면 -->
+        <div id="welcomeScreen" class="welcome-screen">
+            <div class="welcome-content">
+                <h2>📚 MyLibrary JSON Viewer</h2>
+                <p>View JSON backup files exported from MyLibrary Management app.</p>
+                <button id="openFileBtn2" class="btn-primary btn-large">
+                    📂 Open JSON File
+                </button>
+                <div class="features">
+                    <div class="feature">
+                        <h3>✅ Complete Data Preservation</h3>
+                        <p>Display all fields and relational data</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🔍 Search & Filter</h3>
+                        <p>Quick search across all data</p>
+                    </div>
+                    <div class="feature">
+                        <h3>📊 Categorized View</h3>
+                        <p>Books, Loans, Borrowers, etc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 상세보기 모달 -->
+        <div id="detailModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div id="detailContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
