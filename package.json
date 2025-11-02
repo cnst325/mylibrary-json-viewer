@@ -1,6 +1,6 @@
 {
   "name": "mylibrary-json-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cross-platform JSON viewer for MyLibrary Management app data",
   "main": "src/main.js",
   "scripts": {
@@ -42,7 +42,13 @@
         "dmg",
         "zip"
       ],
-      "icon": "assets/icon.icns"
+      "icon": "assets/icon.icns",
+      "identity": "Apple Distribution: JongMin Lee (2GA4LN286W)",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "notarize": false
     },
     "win": {
       "target": [
