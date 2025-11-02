@@ -1,6 +1,6 @@
 {
   "name": "mylibrary-json-viewer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cross-platform JSON viewer for MyLibrary Management app data",
   "main": "src/main.js",
   "scripts": {
@@ -43,12 +43,14 @@
         "zip"
       ],
       "icon": "assets/icon.icns",
-      "identity": "Apple Distribution: JongMin Lee (2GA4LN286W)",
+      "identity": "JongMin Lee (2GA4LN286W)",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
-      "notarize": false
+      "notarize": {
+        "teamId": "2GA4LN286W"
+      }
     },
     "win": {
       "target": [
