@@ -5,13 +5,18 @@ let searchTerm = '';
 let backupTimestamp = null; // 백업 생성 시점
 let currentLanguage = 'ko'; // 기본 언어: 한국어
 
+// 정렬 상태
+let sortState = {
+    books: { column: null, ascending: true },
+    wishlist: { column: null, ascending: true }
+};
+
 // 다국어 지원
 const translations = {
     ko: {
         // 헤더
         appTitle: 'MyLibrary JSON Viewer',
         openFile: '📂 JSON 파일 열기',
-        exportJson: '💾 JSON 내보내기',
         exportCsv: '📊 CSV 내보내기',
         
         // 파일 정보
@@ -100,6 +105,19 @@ const translations = {
         emotionTag: '감정 태그',
         readingNote: '독서 노트',
         
+        // 미디어 타입
+        mediaTypeBook: '책',
+        mediaTypeEbook: '전자책',
+        mediaTypeAudiobook: '오디오북',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'LP/바이닐',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: '블루레이',
+        mediaTypeComic: '만화',
+        mediaTypeManga: '망가',
+        mediaTypeMagazine: '잡지',
+        mediaTypeOther: '기타',
+        
         // 미디어 타입별
         ebookInfo: '전자책 정보',
         audioInfo: '음반 정보',
@@ -154,6 +172,24 @@ const translations = {
         noData: '데이터가 없습니다.',
         unknown: '알 수 없음',
         
+        // 도움말
+        helpTitle: '📖 사용 가이드',
+        helpStep1Title: '1️⃣ 파일 열기',
+        helpStep1Desc: '"📂 JSON 파일 열기" 버튼을 클릭하여 MyLibrary 앱에서 내보낸 백업 파일을 선택하세요.',
+        helpStep2Title: '2️⃣ 데이터 탐색',
+        helpStep2Desc: '상단 탭(소장 자료, 위시리스트, 대출 관리 등)을 클릭하여 각 카테고리의 데이터를 확인하세요.',
+        helpStep3Title: '3️⃣ 검색',
+        helpStep3Desc: '검색창에 제목, 저자, ISBN 등을 입력하여 원하는 항목을 빠르게 찾을 수 있습니다.',
+        helpStep4Title: '4️⃣ 상세 보기',
+        helpStep4Desc: '테이블의 행을 클릭하면 해당 항목의 모든 상세 정보를 확인할 수 있습니다.',
+        helpStep5Title: '5️⃣ 내보내기',
+        helpStep5Desc: '보고 있는 데이터를 CSV 형식으로 내보낼 수 있습니다.',
+        helpFeaturesTitle: '✨ 주요 기능',
+        helpFeature1: '🔄 자동 저장: 마지막으로 연 파일이 자동으로 로드됩니다 (7일간 유효)',
+        helpFeature2: '🌐 다국어: 영어/한국어 지원',
+        helpFeature3: '🔒 개인정보 보호: 모든 데이터는 브라우저 내에서만 처리됩니다',
+        helpFeature4: '📱 반응형: 다양한 화면 크기 지원 (권장: 960px 이상)',
+        
         // 날짜 형식
         dateFormat: 'ko-KR'
     },
@@ -161,7 +197,6 @@ const translations = {
         // Header
         appTitle: 'MyLibrary JSON Viewer',
         openFile: '📂 Open JSON File',
-        exportJson: '💾 Export JSON',
         exportCsv: '📊 Export CSV',
         
         // File Info
@@ -250,6 +285,19 @@ const translations = {
         emotionTag: 'Emotion Tag',
         readingNote: 'Reading Note',
         
+        // Media Types
+        mediaTypeBook: 'Book',
+        mediaTypeEbook: 'E-book',
+        mediaTypeAudiobook: 'Audiobook',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'LP/Vinyl',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Comic',
+        mediaTypeManga: 'Manga',
+        mediaTypeMagazine: 'Magazine',
+        mediaTypeOther: 'Other',
+        
         // Media Type Specific
         ebookInfo: 'E-book Information',
         audioInfo: 'Audio Information',
@@ -304,12 +352,390 @@ const translations = {
         noData: 'No data available.',
         unknown: 'Unknown',
         
+        // Help
+        helpTitle: '📖 User Guide',
+        helpStep1Title: '1️⃣ Open File',
+        helpStep1Desc: 'Click "📂 Open JSON File" button and select a backup file exported from MyLibrary app.',
+        helpStep2Title: '2️⃣ Explore Data',
+        helpStep2Desc: 'Click tabs (Collection, Wishlist, Loans, etc.) to view data in each category.',
+        helpStep3Title: '3️⃣ Search',
+        helpStep3Desc: 'Enter title, author, ISBN, etc. in the search box to quickly find items.',
+        helpStep4Title: '4️⃣ View Details',
+        helpStep4Desc: 'Click any row in the table to see all detailed information for that item.',
+        helpStep5Title: '5️⃣ Export',
+        helpStep5Desc: 'Export the data you are viewing to CSV format.',
+        helpFeaturesTitle: '✨ Key Features',
+        helpFeature1: '🔄 Auto-Save: Last opened file loads automatically (valid for 7 days)',
+        helpFeature2: '🌐 Multilingual: English/Korean support',
+        helpFeature3: '🔒 Privacy: All data processed locally in your browser',
+        helpFeature4: '📱 Responsive: Supports various screen sizes (recommended: 960px+)',
+        
         // Date Format
         dateFormat: 'en-US'
+    },
+    ja: {
+        // ヘッダー
+        appTitle: 'MyLibrary JSON ビューア',
+        openFile: '📂 JSONファイルを開く',
+        exportCsv: '📊 CSVエクスポート',
+        
+        // ファイル情報
+        fileName: 'ファイル名:',
+        filePath: 'パス:',
+        backupDate: 'バックアップ日:',
+        backupNotice: 'すべての貸出状態と延滞情報は、バックアップ作成時点を基準に表示されます。',
+        
+        // タブ
+        books: '📖 コレクション',
+        loans: '📤 貸出',
+        borrowers: '👥 借用者',
+        wishlist: '⭐ ウィッシュリスト',
+        locations: '📍 保管場所',
+        
+        // 検索
+        searchPlaceholder: '検索...',
+        clearSearch: '🔄 クリア',
+        
+        // ウェルカム画面
+        welcomeTitle: '📚 MyLibrary JSON ビューア',
+        welcomeDesc: 'MyLibrary Managementアプリからエクスポートされたバックアップファイルを表示できます。',
+        
+        // テーブルヘッダー - Books
+        cover: '表紙',
+        title: 'タイトル',
+        author: '著者',
+        publisher: '出版社',
+        isbn: 'ISBN',
+        category: 'カテゴリー',
+        location: '場所',
+        status: 'ステータス',
+        
+        // テーブルヘッダー - Loans
+        bookTitle: '本のタイトル',
+        borrower: '借用者',
+        loanDate: '貸出日',
+        dueDate: '返却予定日',
+        returnDate: '返却日',
+        
+        // テーブルヘッダー - Borrowers
+        info1: '情報1',
+        info2: '情報2',
+        createdDate: '登録日',
+        
+        // テーブルヘッダー - Wishlist
+        price: '価格',
+        priority: '優先度',
+        addedDate: '登録日',
+        
+        // テーブルヘッダー - Locations
+        name: '名前',
+        description: '説明',
+        
+        // 読書ステータス
+        unread: '未読',
+        reading: '読書中',
+        read: '既読',
+        
+        // 貸出ステータス
+        returned: '返却済み',
+        onLoan: 'バックアップ時点で貸出中',
+        overdue: 'バックアップ時点で延滞',
+        overdueDays: '日',
+        
+        // 詳細情報
+        basicInfo: '基本情報',
+        collectionInfo: '保管情報',
+        readingRecord: '読書記録',
+        loanHistory: '貸出履歴',
+        otherInfo: 'その他',
+        mediaType: 'メディアタイプ',
+        rating: '評価',
+        readStatus: '読書ステータス',
+        pages: 'ページ',
+        language: '言語',
+        apiSource: 'データソース',
+        note: 'ノート',
+        memo: 'メモ',
+        publishDate: '出版日',
+        description: '説明',
+        
+        // 読書記録
+        startReadingDate: '読書開始日',
+        finishReadingDate: '読書完了日',
+        emotionTag: '感情タグ',
+        readingNote: '読書ノート',
+        
+        // メディアタイプ
+        mediaTypeBook: '本',
+        mediaTypeEbook: '電子書籍',
+        mediaTypeAudiobook: 'オーディオブック',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'LP/バイニル',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'ブルーレイ',
+        mediaTypeComic: 'コミック',
+        mediaTypeManga: 'マンガ',
+        mediaTypeMagazine: '雑誌',
+        mediaTypeOther: 'その他',
+        
+        // メディアタイプ別
+        ebookInfo: '電子書籍情報',
+        audioInfo: '音楽情報',
+        videoInfo: '映像情報',
+        comicInfo: 'コミック情報',
+        fileFormat: 'ファイル形式',
+        fileSize: 'ファイルサイズ',
+        filePath: 'ファイルパス',
+        artist: 'アーティスト',
+        albumName: 'アルバム名',
+        trackCount: 'トラック数',
+        tracks: '曲',
+        director: '監督',
+        cast: '出演',
+        runningTime: '上映時間',
+        minutes: '分',
+        volumeNumber: '巻数',
+        volume: '巻',
+        seriesName: 'シリーズ',
+        isComplete: '完結',
+        completed: '完結',
+        ongoing: '連載中',
+        
+        // 貸出情報
+        loanInfo: '貸出情報',
+        bookInfo: '本情報',
+        borrowerInfo: '借用者情報',
+        loanDetail: '貸出詳細',
+        borrowerNote: '借用者ノート',
+        loanMemo: 'メモ',
+        overdueDaysLabel: '経過日数',
+        overdueTitle: 'バックアップ時点で返却期限超過',
+        
+        // 借用者情報
+        borrowerDetail: '借用者情報',
+        lastBorrowDate: '最終貸出日',
+        totalBorrows: '総貸出回数',
+        times: '回',
+        isActive: 'アクティブ状態',
+        active: 'アクティブ',
+        inactive: '非アクティブ',
+        isFavorite: 'お気に入り',
+        
+        // 場所情報
+        locationDetail: '場所情報',
+        room: '部屋',
+        shelf: '棚',
+        order: '順序',
+        modifiedDate: '修正日',
+        
+        // メッセージ
+        noData: 'データがありません。',
+        unknown: '不明',
+        
+        // ヘルプ
+        helpTitle: '📖 使い方ガイド',
+        helpStep1Title: '1️⃣ ファイルを開く',
+        helpStep1Desc: '「📂 JSONファイルを開く」ボタンをクリックして、MyLibraryアプリからエクスポートしたバックアップファイルを選択してください。',
+        helpStep2Title: '2️⃣ データ探索',
+        helpStep2Desc: '上部のタブ（コレクション、ウィッシュリスト、貸出など）をクリックして、各カテゴリーのデータを確認してください。',
+        helpStep3Title: '3️⃣ 検索',
+        helpStep3Desc: '検索ボックスにタイトル、著者、ISBNなどを入力して、目的のアイテムを素早く見つけられます。',
+        helpStep4Title: '4️⃣ 詳細表示',
+        helpStep4Desc: 'テーブルの行をクリックすると、そのアイテムのすべての詳細情報を確認できます。',
+        helpStep5Title: '5️⃣ エクスポート',
+        helpStep5Desc: '表示中のデータをCSV形式でエクスポートできます。',
+        helpFeaturesTitle: '✨ 主な機能',
+        helpFeature1: '🔄 自動保存: 最後に開いたファイルが自動的に読み込まれます（7日間有効）',
+        helpFeature2: '🌐 多言語: 英語/韓国語/日本語対応',
+        helpFeature3: '🔒 プライバシー保護: すべてのデータはブラウザ内でのみ処理されます',
+        helpFeature4: '📱 レスポンシブ: さまざまな画面サイズに対応（推奨: 960px以上）',
+        
+        // 日付形式
+        dateFormat: 'ja-JP'
+    },
+    de: {
+        // Header
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 JSON-Datei öffnen',
+        exportCsv: '📊 CSV exportieren',
+        
+        // Dateiinformationen
+        fileName: 'Dateiname:',
+        filePath: 'Pfad:',
+        backupDate: 'Backup-Datum:',
+        backupNotice: 'Alle Ausleihstatus und Überfälligkeitsinformationen werden zum Zeitpunkt der Backup-Erstellung angezeigt.',
+        
+        // Tabs
+        books: '📖 Sammlung',
+        loans: '📤 Ausleihen',
+        borrowers: '👥 Ausleiher',
+        wishlist: '⭐ Wunschliste',
+        locations: '📍 Standorte',
+        
+        // Suche
+        searchPlaceholder: 'Suchen...',
+        clearSearch: '🔄 Löschen',
+        
+        // Willkommensbildschirm
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: 'Zeigen Sie JSON-Backup-Dateien an, die aus der MyLibrary Management-App exportiert wurden.',
+        
+        // Tabellenüberschriften - Bücher
+        cover: 'Cover',
+        title: 'Titel',
+        author: 'Autor',
+        publisher: 'Verlag',
+        isbn: 'ISBN',
+        category: 'Kategorie',
+        location: 'Standort',
+        status: 'Status',
+        
+        // Tabellenüberschriften - Ausleihen
+        bookTitle: 'Buchtitel',
+        borrower: 'Ausleiher',
+        loanDate: 'Ausleihdatum',
+        dueDate: 'Rückgabedatum',
+        returnDate: 'Zurückgegeben am',
+        
+        // Tabellenüberschriften - Ausleiher
+        info1: 'Info 1',
+        info2: 'Info 2',
+        createdDate: 'Erstellt am',
+        
+        // Tabellenüberschriften - Wunschliste
+        price: 'Preis',
+        priority: 'Priorität',
+        addedDate: 'Hinzugefügt am',
+        
+        // Tabellenüberschriften - Standorte
+        name: 'Name',
+        description: 'Beschreibung',
+        
+        // Lesestatus
+        unread: 'Ungelesen',
+        reading: 'Lese ich',
+        read: 'Gelesen',
+        
+        // Ausleihstatus
+        returned: 'Zurückgegeben',
+        onLoan: 'Zum Backup-Zeitpunkt ausgeliehen',
+        overdue: 'Zum Backup-Zeitpunkt überfällig',
+        overdueDays: 'Tage',
+        
+        // Detailinformationen
+        basicInfo: 'Grundinformationen',
+        collectionInfo: 'Sammlungsinformationen',
+        readingRecord: 'Leseprotokoll',
+        loanHistory: 'Ausleihhistorie',
+        otherInfo: 'Sonstiges',
+        mediaType: 'Medientyp',
+        rating: 'Bewertung',
+        readStatus: 'Lesestatus',
+        pages: 'Seiten',
+        language: 'Sprache',
+        apiSource: 'Datenquelle',
+        note: 'Notiz',
+        memo: 'Memo',
+        publishDate: 'Veröffentlichungsdatum',
+        description: 'Beschreibung',
+        
+        // Leseprotokoll
+        startReadingDate: 'Lesebeginn',
+        finishReadingDate: 'Leseabschluss',
+        emotionTag: 'Emotions-Tag',
+        readingNote: 'Lesenotiz',
+        
+        // Medientypen
+        mediaTypeBook: 'Buch',
+        mediaTypeEbook: 'E-Book',
+        mediaTypeAudiobook: 'Hörbuch',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'LP/Vinyl',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Comic',
+        mediaTypeManga: 'Manga',
+        mediaTypeMagazine: 'Magazin',
+        mediaTypeOther: 'Sonstiges',
+        
+        // Medientypspezifisch
+        ebookInfo: 'E-Book-Informationen',
+        audioInfo: 'Audio-Informationen',
+        videoInfo: 'Video-Informationen',
+        comicInfo: 'Comic-Informationen',
+        fileFormat: 'Dateiformat',
+        fileSize: 'Dateigröße',
+        filePath: 'Dateipfad',
+        artist: 'Künstler',
+        albumName: 'Album',
+        trackCount: 'Anzahl Titel',
+        tracks: 'Titel',
+        director: 'Regisseur',
+        cast: 'Besetzung',
+        runningTime: 'Laufzeit',
+        minutes: 'Minuten',
+        volumeNumber: 'Bandnummer',
+        volume: 'Band',
+        seriesName: 'Serie',
+        isComplete: 'Abgeschlossen',
+        completed: 'Abgeschlossen',
+        ongoing: 'Laufend',
+        
+        // Ausleihinformationen
+        loanInfo: 'Ausleihinformationen',
+        bookInfo: 'Buchinformationen',
+        borrowerInfo: 'Ausleiherinformationen',
+        loanDetail: 'Ausleihdetails',
+        borrowerNote: 'Ausleiher-Notiz',
+        loanMemo: 'Memo',
+        overdueDaysLabel: 'Verstrichene Tage',
+        overdueTitle: 'Rückgabedatum zum Backup-Zeitpunkt überschritten',
+        
+        // Ausleiherinformationen
+        borrowerDetail: 'Ausleiherdetails',
+        lastBorrowDate: 'Letzte Ausleihe',
+        totalBorrows: 'Gesamtzahl Ausleihen',
+        times: 'Mal',
+        isActive: 'Aktiv',
+        active: 'Aktiv',
+        inactive: 'Inaktiv',
+        isFavorite: 'Favorit',
+        
+        // Standortinformationen
+        locationDetail: 'Standortdetails',
+        room: 'Raum',
+        shelf: 'Regal',
+        order: 'Reihenfolge',
+        modifiedDate: 'Geändert am',
+        
+        // Nachrichten
+        noData: 'Keine Daten verfügbar.',
+        unknown: 'Unbekannt',
+        
+        // Hilfe
+        helpTitle: '📖 Benutzerhandbuch',
+        helpStep1Title: '1️⃣ Datei öffnen',
+        helpStep1Desc: 'Klicken Sie auf "📂 JSON-Datei öffnen" und wählen Sie eine Backup-Datei aus der MyLibrary-App aus.',
+        helpStep2Title: '2️⃣ Daten durchsuchen',
+        helpStep2Desc: 'Klicken Sie auf die Tabs (Sammlung, Wunschliste, Ausleihen usw.), um Daten in jeder Kategorie anzuzeigen.',
+        helpStep3Title: '3️⃣ Suchen',
+        helpStep3Desc: 'Geben Sie Titel, Autor, ISBN usw. in das Suchfeld ein, um Einträge schnell zu finden.',
+        helpStep4Title: '4️⃣ Details anzeigen',
+        helpStep4Desc: 'Klicken Sie auf eine Zeile in der Tabelle, um alle detaillierten Informationen zu diesem Eintrag anzuzeigen.',
+        helpStep5Title: '5️⃣ Exportieren',
+        helpStep5Desc: 'Exportieren Sie die angezeigten Daten in das CSV-Format.',
+        helpFeaturesTitle: '✨ Hauptfunktionen',
+        helpFeature1: '🔄 Automatisches Speichern: Die zuletzt geöffnete Datei wird automatisch geladen (7 Tage gültig)',
+        helpFeature2: '🌐 Mehrsprachig: Unterstützung für Englisch/Koreanisch/Japanisch/Deutsch',
+        helpFeature3: '🔒 Datenschutz: Alle Daten werden nur lokal in Ihrem Browser verarbeitet',
+        helpFeature4: '📱 Responsive: Unterstützt verschiedene Bildschirmgrößen (empfohlen: 960px+)',
+        
+        // Datumsformat
+        dateFormat: 'de-DE'
     }
 };
 
-// 번역 함수
+// 番役 함수
 function t(key) {
     return translations[currentLanguage][key] || key;
 }
@@ -318,8 +744,11 @@ function t(key) {
 const elements = {
     openFileBtn: document.getElementById('openFileBtn'),
     openFileBtn2: document.getElementById('openFileBtn2'),
-    exportJsonBtn: document.getElementById('exportJsonBtn'),
     exportCsvBtn: document.getElementById('exportCsvBtn'),
+    helpBtn: document.getElementById('helpBtn'),
+    helpModal: document.getElementById('helpModal'),
+    helpModalClose: document.getElementById('helpModalClose'),
+    helpContent: document.getElementById('helpContent'),
     welcomeScreen: document.getElementById('welcomeScreen'),
     mainContent: document.getElementById('mainContent'),
     fileInfo: document.getElementById('fileInfo'),
@@ -337,40 +766,24 @@ const elements = {
 
 // 초기화
 document.addEventListener('DOMContentLoaded', async () => {
-    // 시스템 언어 감지 함수
-    async function detectSystemLanguage() {
-        try {
-            // Electron에서 시스템 로케일 가져오기
-            if (window.electronAPI && window.electronAPI.getSystemLocale) {
-                const locale = await window.electronAPI.getSystemLocale();
-                console.log('System locale:', locale);
-                // 한국어인 경우 'ko', 아니면 'en' (기본값)
-                return locale && locale.toLowerCase().startsWith('ko') ? 'ko' : 'en';
-            }
-            
-            // Fallback: 브라우저 언어
-            const systemLang = navigator.language || navigator.userLanguage || 'en';
-            console.log('Browser language:', systemLang);
-            return systemLang.toLowerCase().startsWith('ko') ? 'ko' : 'en';
-        } catch (error) {
-            console.error('Error detecting language:', error);
-            return 'en'; // 오류 발생 시 기본값 영어
-        }
+    // 브라우저 언어 감지
+    function detectSystemLanguage() {
+        const systemLang = navigator.language || navigator.userLanguage || 'en';
+        console.log('Browser language:', systemLang);
+        const lang = systemLang.toLowerCase();
+        
+        if (lang.startsWith('ko')) return 'ko';
+        if (lang.startsWith('ja')) return 'ja';
+        if (lang.startsWith('de')) return 'de';
+        return 'en';
     }
     
-    // 언어 설정: localStorage에 저장된 값 > 시스템 언어 > 영어(기본값)
+    // 언어 설정: localStorage에 저장된 값 > 브라우저 언어 > 영어(기본값)
     const savedLanguage = localStorage.getItem('preferredLanguage');
+    const systemLanguage = detectSystemLanguage();
     
-    // 시스템 언어 감지는 시도하되, 실패하면 영어를 기본값으로 사용
-    let systemLanguage = 'en'; // 기본값: 영어
-    try {
-        systemLanguage = await detectSystemLanguage();
-    } catch (error) {
-        console.error('Failed to detect system language, using default (en):', error);
-    }
-    
-    // localStorage에 저장된 값이 있으면 우선 사용, 없으면 영어 기본값
-    currentLanguage = savedLanguage || 'en';
+    // localStorage에 저장된 값이 있으면 우선 사용, 없으면 시스템 언어 사용
+    currentLanguage = savedLanguage || systemLanguage;
     
     console.log('System language detected:', systemLanguage);
     console.log('Selected language:', currentLanguage);
@@ -382,14 +795,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeEventListeners();
     updateUILanguage();
     
-    // 자동 로드 이벤트 리스너
-    if (window.electronAPI && window.electronAPI.onAutoLoadFile) {
-        window.electronAPI.onAutoLoadFile((result) => {
-            if (result && !result.error) {
-                loadJsonData(result);
-            }
-        });
-    }
+    // 이전에 열었던 파일 자동 로드 시도
+    setTimeout(() => {
+        loadLastFileFromStorage();
+    }, 500);
 });
 
 function initializeEventListeners() {
@@ -405,12 +814,32 @@ function initializeEventListeners() {
         });
     }
     
+    // 파일 입력 요소 생성 및 이벤트 리스너
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        fileInput.addEventListener('change', handleFileSelect);
+    }
+    
     // 파일 열기 버튼
-    elements.openFileBtn.addEventListener('click', openJsonFile);
-    elements.openFileBtn2.addEventListener('click', openJsonFile);
+    elements.openFileBtn.addEventListener('click', () => fileInput.click());
+    elements.openFileBtn2.addEventListener('click', () => fileInput.click());
+    
+    // 도움말 버튼
+    if (elements.helpBtn) {
+        elements.helpBtn.addEventListener('click', showHelp);
+    }
+    if (elements.helpModalClose) {
+        elements.helpModalClose.addEventListener('click', hideHelp);
+    }
+    if (elements.helpModal) {
+        elements.helpModal.addEventListener('click', (e) => {
+            if (e.target === elements.helpModal) {
+                hideHelp();
+            }
+        });
+    }
     
     // 내보내기 버튼
-    elements.exportJsonBtn.addEventListener('click', exportToJson);
     elements.exportCsvBtn.addEventListener('click', exportToCsv);
     
     // 탭 전환
@@ -492,30 +921,144 @@ function updateTabLabels() {
         const locationsCount = libraryData ? libraryData.locations.length : 0;
         
         tabButtons[0].innerHTML = `${t('books')} (<span id="booksCount">${booksCount}</span>)`;
-        tabButtons[1].innerHTML = `${t('loans')} (<span id="loansCount">${loansCount}</span>)`;
-        tabButtons[2].innerHTML = `${t('borrowers')} (<span id="borrowersCount">${borrowersCount}</span>)`;
-        tabButtons[3].innerHTML = `${t('wishlist')} (<span id="wishlistCount">${wishlistCount}</span>)`;
+        tabButtons[1].innerHTML = `${t('wishlist')} (<span id="wishlistCount">${wishlistCount}</span>)`;
+        tabButtons[2].innerHTML = `${t('loans')} (<span id="loansCount">${loansCount}</span>)`;
+        tabButtons[3].innerHTML = `${t('borrowers')} (<span id="borrowersCount">${borrowersCount}</span>)`;
         tabButtons[4].innerHTML = `${t('locations')} (<span id="locationsCount">${locationsCount}</span>)`;
     }
 }
 
-// JSON 파일 열기
-async function openJsonFile() {
+// 브라우저에서 파일 선택 처리
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+        try {
+            const content = e.target.result;
+            const result = {
+                content: content,
+                fileName: file.name,
+                filePath: file.name, // 브라우저에서는 전체 경로 접근 불가
+                lastModified: file.lastModified || Date.now()
+            };
+            
+            // 파일 내용을 localStorage에 저장 (자동 로드용)
+            saveLastFileToStorage(result);
+            
+            loadJsonData(result);
+        } catch (error) {
+            alert('파일을 읽는 중 오류가 발생했습니다: ' + error.message);
+            console.error('File read error:', error);
+        }
+    };
+    
+    reader.onerror = () => {
+        alert('파일을 읽는 중 오류가 발생했습니다.');
+    };
+    
+    reader.readAsText(file);
+}
+
+// 마지막 파일을 localStorage에 저장
+function saveLastFileToStorage(result) {
     try {
-        const result = await window.electronAPI.openJsonFile();
+        // localStorage 용량 제한 확인 (보통 5-10MB)
+        const dataSize = new Blob([result.content]).size;
         
-        if (!result) return;
+        // 5MB 이하만 저장
+        if (dataSize < 5 * 1024 * 1024) {
+            localStorage.setItem('lastFileData', JSON.stringify({
+                content: result.content,
+                fileName: result.fileName,
+                lastModified: result.lastModified,
+                savedAt: Date.now()
+            }));
+            console.log('Last file saved to storage:', result.fileName);
+        } else {
+            console.warn('File too large to save to localStorage:', dataSize);
+            // 큰 파일은 저장하지 않음
+            localStorage.removeItem('lastFileData');
+        }
+    } catch (error) {
+        console.error('Failed to save file to storage:', error);
+        // QuotaExceededError 등의 경우 무시
+    }
+}
+
+// 저장된 파일 자동 로드
+function loadLastFileFromStorage() {
+    try {
+        const savedData = localStorage.getItem('lastFileData');
+        if (!savedData) return false;
         
-        if (result.error) {
-            alert('파일을 읽는 중 오류가 발생했습니다: ' + result.error);
-            return;
+        const data = JSON.parse(savedData);
+        
+        // 7일 이내 데이터만 자동 로드
+        const daysSinceLastSave = (Date.now() - data.savedAt) / (1000 * 60 * 60 * 24);
+        if (daysSinceLastSave > 7) {
+            console.log('Saved file is too old, skipping auto-load');
+            localStorage.removeItem('lastFileData');
+            return false;
         }
         
+        const result = {
+            content: data.content,
+            fileName: data.fileName,
+            filePath: data.fileName,
+            lastModified: data.lastModified
+        };
+        
+        console.log('Auto-loading last file:', data.fileName);
         loadJsonData(result);
         
+        // 자동 로드 성공 알림
+        showAutoLoadNotification(data.fileName);
+        
+        return true;
     } catch (error) {
-        alert('파일을 여는 중 오류가 발생했습니다: ' + error.message);
-        console.error('Open file error:', error);
+        console.error('Failed to load last file from storage:', error);
+        localStorage.removeItem('lastFileData');
+        return false;
+    }
+}
+
+// 자동 로드 알림 표시
+function showAutoLoadNotification(fileName) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #2ecc71;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-size: 14px;
+        animation: slideIn 0.3s ease-out;
+    `;
+    notification.innerHTML = `✓ 이전 파일 자동 로드: ${fileName}`;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.3s';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// JSON 파일 열기 (브라우저 버전에서는 사용하지 않음)
+async function openJsonFile() {
+    // 이 함수는 Electron 버전 호환성을 위해 남겨둠
+    // 브라우저 버전에서는 fileInput.click()으로 처리
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        fileInput.click();
     }
 }
 
@@ -536,7 +1079,6 @@ function loadJsonData(result) {
         elements.mainContent.classList.remove('hidden');
         
         // 내보내기 버튼 표시
-        elements.exportJsonBtn.classList.remove('hidden');
         elements.exportCsvBtn.classList.remove('hidden');
         
         // 데이터 카운트 업데이트
@@ -611,7 +1153,7 @@ function renderCurrentTab() {
 // Books 렌더링
 function renderBooks() {
     const container = document.getElementById('booksTable');
-    const books = libraryData.books || [];
+    let books = libraryData.books || [];
     
     // 검색 필터
     const filteredBooks = books.filter(book => {
@@ -624,22 +1166,32 @@ function renderBooks() {
         );
     });
     
+    // 정렬 적용
+    const sortedBooks = sortBooks(filteredBooks);
+    
+    const getSortIcon = (column) => {
+        if (sortState.books.column === column) {
+            return sortState.books.ascending ? ' ▲' : ' ▼';
+        }
+        return '';
+    };
+    
     const html = `
         <table>
             <thead>
                 <tr>
                     <th style="width: 80px;">${t('cover')}</th>
-                    <th>${t('title')}</th>
-                    <th>${t('author')}</th>
-                    <th>${t('publisher')}</th>
-                    <th>${t('isbn')}</th>
-                    <th>${t('category')}</th>
-                    <th>${t('location')}</th>
-                    <th>${t('status')}</th>
+                    <th class="sortable" onclick="sortBooksBy('title')">${t('title')}${getSortIcon('title')}</th>
+                    <th class="sortable" onclick="sortBooksBy('author')">${t('author')}${getSortIcon('author')}</th>
+                    <th class="sortable" onclick="sortBooksBy('publisher')">${t('publisher')}${getSortIcon('publisher')}</th>
+                    <th class="sortable" onclick="sortBooksBy('isbn')">${t('isbn')}${getSortIcon('isbn')}</th>
+                    <th class="sortable" onclick="sortBooksBy('category')">${t('category')}${getSortIcon('category')}</th>
+                    <th class="sortable" onclick="sortBooksBy('location')">${t('location')}${getSortIcon('location')}</th>
+                    <th class="sortable" onclick="sortBooksBy('readStatus')">${t('status')}${getSortIcon('readStatus')}</th>
                 </tr>
             </thead>
             <tbody>
-                ${filteredBooks.map(book => `
+                ${sortedBooks.map(book => `
                     <tr onclick="showBookDetail(${book.id})">
                         <td>${getBookCoverImage(book)}</td>
                         <td><strong>${escapeHtml(book.title)}</strong></td>
@@ -655,7 +1207,7 @@ function renderBooks() {
         </table>
     `;
     
-    container.innerHTML = filteredBooks.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
+    container.innerHTML = sortedBooks.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
 }
 
 // Loans 렌더링
@@ -667,7 +1219,7 @@ function renderLoans() {
     // 책 ID로 제목 찾기
     const getBookTitle = (bookId) => {
         const book = books.find(b => b.id === bookId);
-        return book ? book.title : '알 수 없음';
+        return book ? book.title : t('unknown');
     };
     
     const filteredLoans = loans.filter(loan => {
@@ -684,12 +1236,12 @@ function renderLoans() {
         <table>
             <thead>
                 <tr>
-                    <th>책 제목</th>
-                    <th>대출자</th>
-                    <th>대출일</th>
-                    <th>반납 예정일</th>
-                    <th>반납일</th>
-                    <th>상태</th>
+                    <th>${t('bookTitle')}</th>
+                    <th>${t('borrower')}</th>
+                    <th>${t('loanDate')}</th>
+                    <th>${t('dueDate')}</th>
+                    <th>${t('returnDate')}</th>
+                    <th>${t('status')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -707,7 +1259,7 @@ function renderLoans() {
         </table>
     `;
     
-    container.innerHTML = filteredLoans.length > 0 ? html : '<p style="padding: 20px; text-align: center;">데이터가 없습니다.</p>';
+    container.innerHTML = filteredLoans.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
 }
 
 // Borrowers 렌더링
@@ -728,10 +1280,10 @@ function renderBorrowers() {
         <table>
             <thead>
                 <tr>
-                    <th>정보 1</th>
-                    <th>정보 2</th>
-                    <th>노트</th>
-                    <th>등록일</th>
+                    <th>${t('info1')}</th>
+                    <th>${t('info2')}</th>
+                    <th>${t('note')}</th>
+                    <th>${t('createdDate')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -747,13 +1299,13 @@ function renderBorrowers() {
         </table>
     `;
     
-    container.innerHTML = filteredBorrowers.length > 0 ? html : '<p style="padding: 20px; text-align: center;">데이터가 없습니다.</p>';
+    container.innerHTML = filteredBorrowers.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
 }
 
 // Wishlist 렌더링
 function renderWishlist() {
     const container = document.getElementById('wishlistTable');
-    const wishlist = libraryData.wishlist || [];
+    let wishlist = libraryData.wishlist || [];
     
     const filteredWishlist = wishlist.filter(item => {
         if (!searchTerm) return true;
@@ -764,22 +1316,32 @@ function renderWishlist() {
         );
     });
     
+    // 정렬 적용
+    const sortedWishlist = sortWishlist(filteredWishlist);
+    
+    const getSortIcon = (column) => {
+        if (sortState.wishlist.column === column) {
+            return sortState.wishlist.ascending ? ' ▲' : ' ▼';
+        }
+        return '';
+    };
+    
     const html = `
         <table>
             <thead>
                 <tr>
-                    <th style="width: 80px;">표지</th>
-                    <th>제목</th>
-                    <th>저자</th>
-                    <th>출판사</th>
+                    <th style="width: 80px;">${t('cover')}</th>
+                    <th class="sortable" onclick="sortWishlistBy('title')">${t('title')}${getSortIcon('title')}</th>
+                    <th class="sortable" onclick="sortWishlistBy('author')">${t('author')}${getSortIcon('author')}</th>
+                    <th class="sortable" onclick="sortWishlistBy('publisher')">${t('publisher')}${getSortIcon('publisher')}</th>
                     <th>ISBN</th>
-                    <th>가격</th>
-                    <th>우선순위</th>
-                    <th>등록일</th>
+                    <th class="sortable" onclick="sortWishlistBy('price')">${t('price')}${getSortIcon('price')}</th>
+                    <th class="sortable" onclick="sortWishlistBy('priority')">${t('priority')}${getSortIcon('priority')}</th>
+                    <th class="sortable" onclick="sortWishlistBy('addedDate')">${t('addedDate')}${getSortIcon('addedDate')}</th>
                 </tr>
             </thead>
             <tbody>
-                ${filteredWishlist.map(item => `
+                ${sortedWishlist.map(item => `
                     <tr onclick="showWishlistDetail(${item.id})">
                         <td>${getWishlistCoverImage(item)}</td>
                         <td><strong>${escapeHtml(item.title)}</strong></td>
@@ -795,7 +1357,7 @@ function renderWishlist() {
         </table>
     `;
     
-    container.innerHTML = filteredWishlist.length > 0 ? html : '<p style="padding: 20px; text-align: center;">데이터가 없습니다.</p>';
+    container.innerHTML = sortedWishlist.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
 }
 
 // Locations 렌더링
@@ -815,9 +1377,9 @@ function renderLocations() {
         <table>
             <thead>
                 <tr>
-                    <th>위치명</th>
-                    <th>설명</th>
-                    <th>생성일</th>
+                    <th>${t('name')}</th>
+                    <th>${t('description')}</th>
+                    <th>${t('createdDate')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -832,7 +1394,7 @@ function renderLocations() {
         </table>
     `;
     
-    container.innerHTML = filteredLocations.length > 0 ? html : '<p style="padding: 20px; text-align: center;">데이터가 없습니다.</p>';
+    container.innerHTML = filteredLocations.length > 0 ? html : `<p style="padding: 20px; text-align: center;">${t('noData')}</p>`;
 }
 
 // 상세 보기 함수들
@@ -1188,19 +1750,19 @@ function getLocationName(locationId) {
 // 미디어 타입 텍스트
 function getMediaTypeText(mediaType) {
     const types = {
-        'BOOK': '📚 책',
-        'EBOOK': '📱 전자책',
-        'AUDIOBOOK': '🎧 오디오북',
-        'CD': '💿 CD',
-        'VINYL': '💿 LP/바이닐',
-        'DVD': '📀 DVD',
-        'BLURAY': '📀 블루레이',
-        'COMIC': '📖 만화',
-        'MANGA': '📖 망가',
-        'MAGAZINE': '📰 잡지',
-        'OTHER': '📦 기타'
+        'BOOK': `📚 ${t('mediaTypeBook')}`,
+        'EBOOK': `📱 ${t('mediaTypeEbook')}`,
+        'AUDIOBOOK': `🎧 ${t('mediaTypeAudiobook')}`,
+        'CD': `💿 ${t('mediaTypeCd')}`,
+        'VINYL': `💿 ${t('mediaTypeVinyl')}`,
+        'DVD': `📀 ${t('mediaTypeDvd')}`,
+        'BLURAY': `📀 ${t('mediaTypeBluray')}`,
+        'COMIC': `📖 ${t('mediaTypeComic')}`,
+        'MANGA': `📖 ${t('mediaTypeManga')}`,
+        'MAGAZINE': `📰 ${t('mediaTypeMagazine')}`,
+        'OTHER': `📦 ${t('mediaTypeOther')}`
     };
-    return types[mediaType] || mediaType || '📚 책';
+    return types[mediaType] || mediaType || `📚 ${t('mediaTypeBook')}`;
 }
 
 // 독서 기록 정보
@@ -1315,13 +1877,14 @@ function getLoanStatusBox(loan) {
 function formatBackupDate(timestamp) {
     if (!timestamp) return '-';
     const date = new Date(timestamp);
-    return date.toLocaleDateString('ko-KR', {
+    const locale = currentLanguage === 'ko' ? 'ko-KR' : 'en-US';
+    return date.toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
-    }) + ' (파일 수정 시간 기준)';
+    }) + ' (based on file modification time)';
 }
 
 // 파일명용 날짜 포맷
@@ -1334,31 +1897,7 @@ function formatDateForFileName(timestamp) {
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
-// JSON 내보내기
-async function exportToJson() {
-    if (!libraryData) {
-        alert('내보낼 데이터가 없습니다.');
-        return;
-    }
-    
-    try {
-        const jsonData = JSON.stringify(libraryData, null, 2);
-        const fileName = `mylibrary_backup_${formatDateForFileName(backupTimestamp)}.json`;
-        
-        const result = await window.electronAPI.saveJsonFile(jsonData, fileName);
-        
-        if (result.success) {
-            alert(`JSON 파일이 저장되었습니다.\n위치: ${result.filePath}`);
-        } else if (!result.canceled) {
-            alert('파일 저장 중 오류가 발생했습니다: ' + (result.error || '알 수 없는 오류'));
-        }
-    } catch (error) {
-        console.error('Export JSON error:', error);
-        alert('JSON 내보내기 중 오류가 발생했습니다: ' + error.message);
-    }
-}
-
-// CSV 내보내기
+// CSV 내보내기 (브라우저 다운로드)
 async function exportToCsv() {
     if (!libraryData) {
         alert('내보낼 데이터가 없습니다.');
@@ -1370,17 +1909,27 @@ async function exportToCsv() {
         const csvData = generateBooksCsv(libraryData.books || []);
         const fileName = `mylibrary_books_${formatDateForFileName(backupTimestamp)}.csv`;
         
-        const result = await window.electronAPI.saveCsvFile(csvData, fileName);
+        // 브라우저에서 파일 다운로드
+        downloadFile(csvData, fileName, 'text/csv;charset=utf-8');
         
-        if (result.success) {
-            alert(`CSV 파일이 저장되었습니다.\n위치: ${result.filePath}`);
-        } else if (!result.canceled) {
-            alert('파일 저장 중 오류가 발생했습니다: ' + (result.error || '알 수 없는 오류'));
-        }
+        alert(`CSV 파일이 다운로드되었습니다: ${fileName}`);
     } catch (error) {
         console.error('Export CSV error:', error);
         alert('CSV 내보내기 중 오류가 발생했습니다: ' + error.message);
     }
+}
+
+// 브라우저에서 파일 다운로드 헬퍼 함수
+function downloadFile(content, fileName, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 // 도서 목록 CSV 생성 (Android 앱 BackupManager.kt와 동일한 형식)
@@ -1477,4 +2026,159 @@ function escapeCsvField(field) {
     }
     
     return str;
+}
+
+// 도움말 표시
+function showHelp() {
+    if (!elements.helpModal || !elements.helpContent) return;
+    
+    elements.helpContent.innerHTML = `
+        <div style="padding: 20px;">
+            <h2 style="margin-top: 0; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                ${t('helpTitle')}
+            </h2>
+            
+            <div style="margin: 20px 0;">
+                <h3 style="color: #3498db; margin-top: 20px;">${t('helpStep1Title')}</h3>
+                <p style="color: #555; line-height: 1.6;">${t('helpStep1Desc')}</p>
+                
+                <h3 style="color: #3498db; margin-top: 20px;">${t('helpStep2Title')}</h3>
+                <p style="color: #555; line-height: 1.6;">${t('helpStep2Desc')}</p>
+                
+                <h3 style="color: #3498db; margin-top: 20px;">${t('helpStep3Title')}</h3>
+                <p style="color: #555; line-height: 1.6;">${t('helpStep3Desc')}</p>
+                
+                <h3 style="color: #3498db; margin-top: 20px;">${t('helpStep4Title')}</h3>
+                <p style="color: #555; line-height: 1.6;">${t('helpStep4Desc')}</p>
+                
+                <h3 style="color: #3498db; margin-top: 20px;">${t('helpStep5Title')}</h3>
+                <p style="color: #555; line-height: 1.6;">${t('helpStep5Desc')}</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin-top: 24px;">
+                <h3 style="color: #2c3e50; margin-top: 0;">${t('helpFeaturesTitle')}</h3>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #555;">
+                    <li style="margin: 8px 0;">${t('helpFeature1')}</li>
+                    <li style="margin: 8px 0;">${t('helpFeature2')}</li>
+                    <li style="margin: 8px 0;">${t('helpFeature3')}</li>
+                    <li style="margin: 8px 0;">${t('helpFeature4')}</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e0e0e0; text-align: center;">
+                <p style="margin: 0; color: #95a5a6; font-size: 13px;">
+                    © ${new Date().getFullYear()} CNST. All rights reserved.
+                </p>
+            </div>
+        </div>
+    `;
+    
+    elements.helpModal.classList.remove('hidden');
+}
+
+// 도움말 숨김
+function hideHelp() {
+    if (elements.helpModal) {
+        elements.helpModal.classList.add('hidden');
+    }
+}
+
+// Books 정렬 함수
+function sortBooksBy(column) {
+    if (sortState.books.column === column) {
+        sortState.books.ascending = !sortState.books.ascending;
+    } else {
+        sortState.books.column = column;
+        sortState.books.ascending = true;
+    }
+    renderBooks();
+}
+
+function sortBooks(books) {
+    if (!sortState.books.column) return books;
+    
+    const sorted = [...books].sort((a, b) => {
+        const column = sortState.books.column;
+        let aVal, bVal;
+        
+        // Location은 특별 처리 (locationId로 이름 찾기)
+        if (column === 'location') {
+            aVal = getLocationName(a.locationId) || a.location || '';
+            bVal = getLocationName(b.locationId) || b.location || '';
+        } else {
+            aVal = a[column] || '';
+            bVal = b[column] || '';
+        }
+        
+        // 읽음 상태는 특별 처리
+        if (column === 'readStatus') {
+            const statusOrder = { 'UNREAD': 0, 'READING': 1, 'READ': 2 };
+            aVal = statusOrder[aVal] ?? 999;
+            bVal = statusOrder[bVal] ?? 999;
+        }
+        
+        // 문자열 비교
+        if (typeof aVal === 'string') {
+            aVal = aVal.toLowerCase();
+            bVal = bVal.toLowerCase();
+        }
+        
+        if (aVal < bVal) return sortState.books.ascending ? -1 : 1;
+        if (aVal > bVal) return sortState.books.ascending ? 1 : -1;
+        return 0;
+    });
+    
+    return sorted;
+}
+
+// Wishlist 정렬 함수
+function sortWishlistBy(column) {
+    if (sortState.wishlist.column === column) {
+        sortState.wishlist.ascending = !sortState.wishlist.ascending;
+    } else {
+        sortState.wishlist.column = column;
+        sortState.wishlist.ascending = true;
+    }
+    renderWishlist();
+}
+
+function sortWishlist(wishlist) {
+    if (!sortState.wishlist.column) return wishlist;
+    
+    const sorted = [...wishlist].sort((a, b) => {
+        const column = sortState.wishlist.column;
+        let aVal = a[column];
+        let bVal = b[column];
+        
+        // null/undefined 처리
+        if (aVal == null) aVal = '';
+        if (bVal == null) bVal = '';
+        
+        // 가격은 숫자로 변환
+        if (column === 'price') {
+            aVal = parseFloat(aVal) || 0;
+            bVal = parseFloat(bVal) || 0;
+        }
+        // 우선순위는 숫자
+        else if (column === 'priority') {
+            aVal = parseInt(aVal) || 0;
+            bVal = parseInt(bVal) || 0;
+        }
+        // 날짜
+        else if (column === 'addedDate') {
+            aVal = aVal || 0;
+            bVal = bVal || 0;
+        }
+        // 문자열
+        else if (typeof aVal === 'string') {
+            aVal = aVal.toLowerCase();
+            bVal = bVal.toLowerCase();
+        }
+        
+        if (aVal < bVal) return sortState.wishlist.ascending ? -1 : 1;
+        if (aVal > bVal) return sortState.wishlist.ascending ? 1 : -1;
+        return 0;
+    });
+    
+    return sorted;
 }
