@@ -48,6 +48,7 @@ const translations = {
         isbn: 'ISBN',
         category: '카테고리',
         location: '위치',
+        locationIdLabel: '소장위치ID',
         status: '상태',
         
         // 테이블 헤더 - Loans
@@ -140,6 +141,9 @@ const translations = {
         isComplete: '완결 여부',
         completed: '완결',
         ongoing: '연재중',
+        coverUrl: '표지 URL',
+        highResCoverUrl: '고해상도 표지 URL',
+        localCoverPath: '로컬 표지 경로',
         
         // 대출 정보
         loanInfo: '대출 정보',
@@ -186,7 +190,7 @@ const translations = {
         helpStep5Desc: '보고 있는 데이터를 CSV 형식으로 내보낼 수 있습니다.',
         helpFeaturesTitle: '✨ 주요 기능',
         helpFeature1: '🔄 자동 저장: 마지막으로 연 파일이 자동으로 로드됩니다 (7일간 유효)',
-        helpFeature2: '🌐 다국어: 영어/한국어 지원',
+        helpFeature2: '🌐 다국어: 영어/한국어/일본어/독일어/프랑스어/스페인어/포르투갈어/중국어(번체) 지원',
         helpFeature3: '🔒 개인정보 보호: 모든 데이터는 브라우저 내에서만 처리됩니다',
         helpFeature4: '📱 반응형: 다양한 화면 크기 지원 (권장: 960px 이상)',
         
@@ -228,6 +232,7 @@ const translations = {
         isbn: 'ISBN',
         category: 'Category',
         location: 'Location',
+        locationIdLabel: 'Location ID',
         status: 'Status',
         
         // Table Headers - Loans
@@ -320,6 +325,9 @@ const translations = {
         isComplete: 'Status',
         completed: 'Completed',
         ongoing: 'Ongoing',
+        coverUrl: 'Cover URL',
+        highResCoverUrl: 'High-Res Cover URL',
+        localCoverPath: 'Local Cover Path',
         
         // Loan Info
         loanInfo: 'Loan Information',
@@ -366,7 +374,7 @@ const translations = {
         helpStep5Desc: 'Export the data you are viewing to CSV format.',
         helpFeaturesTitle: '✨ Key Features',
         helpFeature1: '🔄 Auto-Save: Last opened file loads automatically (valid for 7 days)',
-        helpFeature2: '🌐 Multilingual: English/Korean support',
+        helpFeature2: '🌐 Multilingual: English, Korean, Japanese, German, French, Spanish, Portuguese, and Traditional Chinese support',
         helpFeature3: '🔒 Privacy: All data processed locally in your browser',
         helpFeature4: '📱 Responsive: Supports various screen sizes (recommended: 960px+)',
         
@@ -408,6 +416,7 @@ const translations = {
         isbn: 'ISBN',
         category: 'カテゴリー',
         location: '場所',
+        locationIdLabel: '場所ID',
         status: 'ステータス',
         
         // テーブルヘッダー - Loans
@@ -500,6 +509,9 @@ const translations = {
         isComplete: '完結',
         completed: '完結',
         ongoing: '連載中',
+        coverUrl: '表紙URL',
+        highResCoverUrl: '高解像度表紙URL',
+        localCoverPath: 'ローカル表紙パス',
         
         // 貸出情報
         loanInfo: '貸出情報',
@@ -546,7 +558,7 @@ const translations = {
         helpStep5Desc: '表示中のデータをCSV形式でエクスポートできます。',
         helpFeaturesTitle: '✨ 主な機能',
         helpFeature1: '🔄 自動保存: 最後に開いたファイルが自動的に読み込まれます（7日間有効）',
-        helpFeature2: '🌐 多言語: 英語/韓国語/日本語対応',
+        helpFeature2: '🌐 多言語: 英語/韓国語/日本語/ドイツ語/フランス語/スペイン語/ポルトガル語/繁体字中国語対応',
         helpFeature3: '🔒 プライバシー保護: すべてのデータはブラウザ内でのみ処理されます',
         helpFeature4: '📱 レスポンシブ: さまざまな画面サイズに対応（推奨: 960px以上）',
         
@@ -588,6 +600,7 @@ const translations = {
         isbn: 'ISBN',
         category: 'Kategorie',
         location: 'Standort',
+        locationIdLabel: 'Standort-ID',
         status: 'Status',
         
         // Tabellenüberschriften - Ausleihen
@@ -680,6 +693,9 @@ const translations = {
         isComplete: 'Abgeschlossen',
         completed: 'Abgeschlossen',
         ongoing: 'Laufend',
+        coverUrl: 'Cover-URL',
+        highResCoverUrl: 'Cover-URL (HD)',
+        localCoverPath: 'Lokaler Cover-Pfad',
         
         // Ausleihinformationen
         loanInfo: 'Ausleihinformationen',
@@ -726,7 +742,7 @@ const translations = {
         helpStep5Desc: 'Exportieren Sie die angezeigten Daten in das CSV-Format.',
         helpFeaturesTitle: '✨ Hauptfunktionen',
         helpFeature1: '🔄 Automatisches Speichern: Die zuletzt geöffnete Datei wird automatisch geladen (7 Tage gültig)',
-        helpFeature2: '🌐 Mehrsprachig: Unterstützung für Englisch/Koreanisch/Japanisch/Deutsch',
+        helpFeature2: '🌐 Mehrsprachig: Unterstützung für Englisch, Koreanisch, Japanisch, Deutsch, Französisch, Spanisch, Portugiesisch und traditionelles Chinesisch',
         helpFeature3: '🔒 Datenschutz: Alle Daten werden nur lokal in Ihrem Browser verarbeitet',
         helpFeature4: '📱 Responsive: Unterstützt verschiedene Bildschirmgrößen (empfohlen: 960px+)',
         
@@ -734,6 +750,782 @@ const translations = {
         dateFormat: 'de-DE'
     }
 };
+
+const localeOverrides = {
+    fr: {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 Ouvrir un fichier JSON',
+        exportCsv: '📊 Exporter en CSV',
+
+        // File Info
+        fileName: 'Nom du fichier:',
+        filePath: 'Chemin:',
+        backupDate: 'Date de sauvegarde:',
+        backupNotice: 'Toutes les informations de prêt et de retard sont affichées selon l\'heure de création de la sauvegarde.',
+
+        // Tabs
+        books: '📖 Collection',
+        loans: '📤 Prêts',
+        borrowers: '👥 Emprunteurs',
+        wishlist: '⭐ Liste de souhaits',
+        locations: '📍 Emplacements',
+
+        // Search
+        searchPlaceholder: 'Rechercher...',
+        clearSearch: '🔄 Effacer',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: 'Consultez les fichiers JSON exportés depuis l\'application MyLibrary Management.',
+
+        // Table Headers - Books
+        cover: '📚 Couverture',
+        title: 'Titre',
+        author: 'Auteur',
+        publisher: 'Éditeur',
+        isbn: 'ISBN',
+        category: 'Catégorie',
+        location: 'Emplacement',
+        locationIdLabel: 'ID de l\'emplacement',
+        status: 'Statut',
+
+        // Table Headers - Loans
+        bookTitle: 'Titre du livre',
+        borrower: 'Emprunteur',
+        loanDate: 'Date de prêt',
+        dueDate: 'Date d\'échéance',
+        returnDate: 'Date de retour',
+
+        // Table Headers - Borrowers
+        info1: 'Info 1',
+        info2: 'Info 2',
+        createdDate: 'Créé',
+
+        // Table Headers - Wishlist
+        price: 'Prix',
+        priority: 'Priorité',
+        addedDate: 'Ajouté',
+
+        // Table Headers - Locations
+        name: 'Nom',
+        description: 'Description',
+
+        // Read Status
+        unread: 'Non lu',
+        reading: 'En cours',
+        read: 'Lu',
+
+        // Loan Status
+        returned: 'Rendu',
+        onLoan: 'En prêt (au moment du backup)',
+        overdue: 'En retard (au moment du backup)',
+        overdueDays: 'j',
+
+        // Detail Info
+        basicInfo: 'Informations de base',
+        collectionInfo: 'Informations de la collection',
+        readingRecord: 'Historique de lecture',
+        loanHistory: 'Historique des prêts',
+        otherInfo: 'Autres informations',
+        mediaType: 'Type de média',
+        rating: 'Évaluation',
+        readStatus: 'Statut de lecture',
+        pages: 'Pages',
+        language: 'Langue',
+        apiSource: 'Source des données',
+        note: 'Note',
+        memo: 'Mémo',
+        publishDate: 'Date de publication',
+        description: 'Description',
+
+        // Reading Record
+        startReadingDate: 'Début de lecture',
+        finishReadingDate: 'Fin de lecture',
+        emotionTag: 'Étiquette émotionnelle',
+        readingNote: 'Note de lecture',
+
+        // Media Types
+        mediaTypeBook: 'Livre',
+        mediaTypeEbook: 'Livre numérique',
+        mediaTypeAudiobook: 'Livre audio',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'Disque vinyle',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Bande dessinée',
+        mediaTypeManga: 'Manga',
+        mediaTypeMagazine: 'Magazine',
+        mediaTypeOther: 'Autre',
+
+        // Media Type Specific
+        ebookInfo: 'Informations sur le livre numérique',
+        audioInfo: 'Informations audio',
+        videoInfo: 'Informations vidéo',
+        comicInfo: 'Informations sur la BD',
+        fileFormat: 'Format de fichier',
+        fileSize: 'Taille du fichier',
+        filePath: 'Chemin du fichier',
+        artist: 'Artiste',
+        albumName: 'Album',
+        trackCount: 'Titres',
+        tracks: 'titres',
+        director: 'Réalisateur',
+        cast: 'Distribution',
+        runningTime: 'Durée',
+        minutes: 'min',
+        volumeNumber: 'Volume',
+        volume: 'vol',
+        seriesName: 'Série',
+        isComplete: 'Statut',
+        completed: 'Terminé',
+        ongoing: 'En cours',
+        coverUrl: 'URL de la couverture',
+        highResCoverUrl: 'URL de la couverture HD',
+        localCoverPath: 'Chemin de couverture local',
+
+        // Loan Info
+        loanInfo: 'Informations de prêt',
+        bookInfo: 'Informations sur le livre',
+        borrowerInfo: 'Informations sur l\'emprunteur',
+        loanDetail: 'Détails du prêt',
+        borrowerNote: 'Note de l\'emprunteur',
+        loanMemo: 'Mémo de prêt',
+        overdueDaysLabel: 'Jours de retard',
+        overdueTitle: 'Date de retour dépassée (au moment du backup)',
+
+        // Borrower Info
+        borrowerDetail: 'Détails de l\'emprunteur',
+        lastBorrowDate: 'Dernier prêt',
+        totalBorrows: 'Total de prêts',
+        times: 'fois',
+        isActive: 'Statut',
+        active: 'Actif',
+        inactive: 'Inactif',
+        isFavorite: 'Favori',
+
+        // Location Info
+        locationDetail: 'Détails de l\'emplacement',
+        room: 'Salle',
+        shelf: 'Étagère',
+        order: 'Ordre',
+        modifiedDate: 'Modifié le',
+
+        // Messages
+        noData: 'Aucune donnée disponible.',
+        unknown: 'Inconnu',
+
+        // Help
+        helpTitle: '📖 Guide d\'utilisation',
+        helpStep1Title: '1️⃣ Ouvrir un fichier',
+        helpStep1Desc: 'Cliquez sur le bouton "📂 Ouvrir un fichier JSON" et choisissez un fichier de sauvegarde exporté depuis MyLibrary.',
+        helpStep2Title: '2️⃣ Explorer les données',
+        helpStep2Desc: 'Cliquez sur les onglets (Collection, Liste de souhaits, Prêts, etc.) pour consulter chaque catégorie.',
+        helpStep3Title: '3️⃣ Rechercher',
+        helpStep3Desc: 'Saisissez un titre, un auteur, un ISBN, etc. pour trouver rapidement un élément.',
+        helpStep4Title: '4️⃣ Afficher les détails',
+        helpStep4Desc: 'Cliquez sur une ligne du tableau pour voir toutes les informations détaillées.',
+        helpStep5Title: '5️⃣ Exporter',
+        helpStep5Desc: 'Exportez les données affichées au format CSV.',
+        helpFeaturesTitle: '✨ Fonctionnalités clés',
+        helpFeature1: '🔄 Sauvegarde automatique : le dernier fichier ouvert est rechargé automatiquement (valide 7 jours)',
+        helpFeature2: '🌐 Multilingue : prise en charge de l\'anglais, du coréen, du japonais, de l\'allemand, du français, de l\'espagnol, du portugais et du chinois traditionnel.',
+        helpFeature3: '🔒 Confidentialité : toutes les données sont traitées localement dans votre navigateur',
+        helpFeature4: '📱 Responsive : compatible avec diverses tailles d\'écran (recommandé : 960px+)',
+
+        dateFormat: 'fr-FR'
+    },
+    es: {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 Abrir archivo JSON',
+        exportCsv: '📊 Exportar CSV',
+
+        // File Info
+        fileName: 'Nombre del archivo:',
+        filePath: 'Ruta:',
+        backupDate: 'Fecha de respaldo:',
+        backupNotice: 'Todos los estados de préstamo y la información de vencimiento se muestran según el momento de creación del respaldo.',
+
+        // Tabs
+        books: '📖 Colección',
+        loans: '📤 Préstamos',
+        borrowers: '👥 Prestatarios',
+        wishlist: '⭐ Lista de deseos',
+        locations: '📍 Ubicaciones',
+
+        // Search
+        searchPlaceholder: 'Buscar...',
+        clearSearch: '🔄 Limpiar',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: 'Visualiza archivos JSON exportados desde la app MyLibrary Management.',
+
+        // Table Headers - Books
+        cover: '📚 Portada',
+        title: 'Título',
+        author: 'Autor',
+        publisher: 'Editorial',
+        isbn: 'ISBN',
+        category: 'Categoría',
+        location: 'Ubicación',
+        locationIdLabel: 'ID de ubicación',
+        status: 'Estado',
+
+        // Table Headers - Loans
+        bookTitle: 'Título del libro',
+        borrower: 'Prestatario',
+        loanDate: 'Fecha de préstamo',
+        dueDate: 'Fecha de devolución',
+        returnDate: 'Fecha de retorno',
+
+        // Table Headers - Borrowers
+        info1: 'Info 1',
+        info2: 'Info 2',
+        createdDate: 'Creado',
+
+        // Table Headers - Wishlist
+        price: 'Precio',
+        priority: 'Prioridad',
+        addedDate: 'Fecha añadida',
+
+        // Table Headers - Locations
+        name: 'Nombre',
+        description: 'Descripción',
+
+        // Reading Status
+        unread: 'Sin leer',
+        reading: 'Leyendo',
+        read: 'Leído',
+
+        // Loan Status
+        returned: 'Devuelto',
+        onLoan: 'Prestado (en el respaldo)',
+        overdue: 'Atrasado (en el respaldo)',
+        overdueDays: 'd',
+
+        // Detail Info
+        basicInfo: 'Información básica',
+        collectionInfo: 'Información de la colección',
+        readingRecord: 'Registro de lectura',
+        loanHistory: 'Historial de préstamos',
+        otherInfo: 'Otra información',
+        mediaType: 'Tipo de medio',
+        rating: 'Calificación',
+        readStatus: 'Estado de lectura',
+        pages: 'Páginas',
+        language: 'Idioma',
+        apiSource: 'Fuente de datos',
+        note: 'Nota',
+        memo: 'Memo',
+        publishDate: 'Fecha de publicación',
+        description: 'Descripción',
+
+        // Reading Record
+        startReadingDate: 'Inicio de lectura',
+        finishReadingDate: 'Fin de lectura',
+        emotionTag: 'Etiqueta emocional',
+        readingNote: 'Nota de lectura',
+
+        // Media Types
+        mediaTypeBook: 'Libro',
+        mediaTypeEbook: 'Libro electrónico',
+        mediaTypeAudiobook: 'Audiolibro',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'Vinilo',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Cómic',
+        mediaTypeManga: 'Manga',
+        mediaTypeMagazine: 'Revista',
+        mediaTypeOther: 'Otros',
+
+        // Media Specific
+        ebookInfo: 'Información del libro electrónico',
+        audioInfo: 'Información de audio',
+        videoInfo: 'Información de video',
+        comicInfo: 'Información del cómic',
+        fileFormat: 'Formato de archivo',
+        fileSize: 'Tamaño del archivo',
+        filePath: 'Ruta del archivo',
+        artist: 'Artista',
+        albumName: 'Álbum',
+        trackCount: 'Pistas',
+        tracks: 'pistas',
+        director: 'Director',
+        cast: 'Reparto',
+        runningTime: 'Duración',
+        minutes: 'min',
+        volumeNumber: 'Volumen',
+        volume: 'vol',
+        seriesName: 'Serie',
+        isComplete: 'Estado',
+        completed: 'Completado',
+        ongoing: 'En curso',
+        coverUrl: 'URL de la portada',
+        highResCoverUrl: 'URL de la portada en alta resolución',
+        localCoverPath: 'Ruta local de la portada',
+
+        // Loan Info
+        loanInfo: 'Información de préstamo',
+        bookInfo: 'Información del libro',
+        borrowerInfo: 'Información del prestatario',
+        loanDetail: 'Detalles del préstamo',
+        borrowerNote: 'Nota del prestatario',
+        loanMemo: 'Memo de préstamo',
+        overdueDaysLabel: 'Días de demora',
+        overdueTitle: 'Fecha de devolución vencida (en el respaldo)',
+
+        // Borrower Info
+        borrowerDetail: 'Detalles del prestatario',
+        lastBorrowDate: 'Último préstamo',
+        totalBorrows: 'Total de préstamos',
+        times: 'veces',
+        isActive: 'Estado',
+        active: 'Activo',
+        inactive: 'Inactivo',
+        isFavorite: 'Favorito',
+
+        // Location Info
+        locationDetail: 'Detalles de ubicación',
+        room: 'Sala',
+        shelf: 'Estante',
+        order: 'Orden',
+        modifiedDate: 'Modificado',
+
+        // Messages
+        noData: 'No hay datos disponibles.',
+        unknown: 'Desconocido',
+
+        // Help
+        helpTitle: '📖 Guía de uso',
+        helpStep1Title: '1️⃣ Abrir archivo',
+        helpStep1Desc: 'Haz clic en el botón "📂 Abrir archivo JSON" y selecciona una copia de seguridad exportada desde MyLibrary.',
+        helpStep2Title: '2️⃣ Explorar datos',
+        helpStep2Desc: 'Haz clic en las pestañas (Colección, Lista de deseos, Préstamos, etc.) para ver cada categoría.',
+        helpStep3Title: '3️⃣ Buscar',
+        helpStep3Desc: 'Escribe título, autor, ISBN, etc. para encontrar el elemento deseado rápidamente.',
+        helpStep4Title: '4️⃣ Ver detalles',
+        helpStep4Desc: 'Haz clic en una fila de la tabla para ver toda la información detallada de ese registro.',
+        helpStep5Title: '5️⃣ Exportar',
+        helpStep5Desc: 'Exporta los datos visibles en formato CSV.',
+        helpFeaturesTitle: '✨ Funciones clave',
+        helpFeature1: '🔄 Auto-guardado: el último archivo abierto se carga automáticamente (válido 7 días)',
+        helpFeature2: '🌐 Multilingüe: soporte para inglés, coreano, japonés, alemán, francés, español, portugués y chino tradicional.',
+        helpFeature3: '🔒 Privacidad: todos los datos se procesan localmente en el navegador',
+        helpFeature4: '📱 Responsivo: compatible con distintas resoluciones (recomendado: 960px+)',
+
+        dateFormat: 'es-ES'
+    },
+    pt: {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 Abrir arquivo JSON',
+        exportCsv: '📊 Exportar CSV',
+
+        // File Info
+        fileName: 'Nome do arquivo:',
+        filePath: 'Caminho:',
+        backupDate: 'Data do backup:',
+        backupNotice: 'Todos os status de empréstimo e informações de atraso são exibidos com base na hora de criação do backup.',
+
+        // Tabs
+        books: '📖 Coleção',
+        loans: '📤 Empréstimos',
+        borrowers: '👥 Tomadores',
+        wishlist: '⭐ Lista de desejos',
+        locations: '📍 Localizações',
+
+        // Search
+        searchPlaceholder: 'Pesquisar...',
+        clearSearch: '🔄 Limpar',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: 'Visualize arquivos JSON exportados do app MyLibrary Management.',
+
+        // Table Headers - Books
+        cover: '📚 Capa',
+        title: 'Título',
+        author: 'Autor',
+        publisher: 'Editora',
+        isbn: 'ISBN',
+        category: 'Categoria',
+        location: 'Localização',
+        locationIdLabel: 'ID da localização',
+        status: 'Status',
+
+        // Table Headers - Loans
+        bookTitle: 'Título do livro',
+        borrower: 'Tomador',
+        loanDate: 'Data de empréstimo',
+        dueDate: 'Data de devolução',
+        returnDate: 'Data de retorno',
+
+        // Table Headers - Borrowers
+        info1: 'Info 1',
+        info2: 'Info 2',
+        createdDate: 'Criado',
+
+        // Table Headers - Wishlist
+        price: 'Preço',
+        priority: 'Prioridade',
+        addedDate: 'Adicionado',
+
+        // Table Headers - Locations
+        name: 'Nome',
+        description: 'Descrição',
+
+        // Reading Status
+        unread: 'Não lido',
+        reading: 'Lendo',
+        read: 'Lido',
+
+        // Loan Status
+        returned: 'Devolvido',
+        onLoan: 'Emprestado (no backup)',
+        overdue: 'Atrasado (no backup)',
+        overdueDays: 'd',
+
+        // Detail Info
+        basicInfo: 'Informações básicas',
+        collectionInfo: 'Informações da coleção',
+        readingRecord: 'Registro de leitura',
+        loanHistory: 'Histórico de empréstimos',
+        otherInfo: 'Outras informações',
+        mediaType: 'Tipo de mídia',
+        rating: 'Avaliação',
+        readStatus: 'Status de leitura',
+        pages: 'Páginas',
+        language: 'Idioma',
+        apiSource: 'Fonte dos dados',
+        note: 'Nota',
+        memo: 'Memo',
+        publishDate: 'Data de publicação',
+        description: 'Descrição',
+
+        // Reading Record
+        startReadingDate: 'Início da leitura',
+        finishReadingDate: 'Fim da leitura',
+        emotionTag: 'Etiqueta emocional',
+        readingNote: 'Nota de leitura',
+
+        // Media Types
+        mediaTypeBook: 'Livro',
+        mediaTypeEbook: 'Livro digital',
+        mediaTypeAudiobook: 'Audiolivro',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'Vinil',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Quadrinhos',
+        mediaTypeManga: 'Mangá',
+        mediaTypeMagazine: 'Revista',
+        mediaTypeOther: 'Outro',
+
+        // Media Specific
+        ebookInfo: 'Informações do livro digital',
+        audioInfo: 'Informações de áudio',
+        videoInfo: 'Informações de vídeo',
+        comicInfo: 'Informações de quadrinhos',
+        fileFormat: 'Formato do arquivo',
+        fileSize: 'Tamanho do arquivo',
+        filePath: 'Caminho do arquivo',
+        artist: 'Artista',
+        albumName: 'Álbum',
+        trackCount: 'Faixas',
+        tracks: 'faixas',
+        director: 'Diretor',
+        cast: 'Elenco',
+        runningTime: 'Duração',
+        minutes: 'min',
+        volumeNumber: 'Volume',
+        volume: 'vol',
+        seriesName: 'Série',
+        isComplete: 'Status',
+        completed: 'Concluído',
+        ongoing: 'Em andamento',
+        coverUrl: 'URL da capa',
+        highResCoverUrl: 'URL da capa em alta resolução',
+        localCoverPath: 'Caminho da capa local',
+
+        // Loan Info
+        loanInfo: 'Informações de empréstimo',
+        bookInfo: 'Informações do livro',
+        borrowerInfo: 'Informações do tomador',
+        loanDetail: 'Detalhes do empréstimo',
+        borrowerNote: 'Nota do tomador',
+        loanMemo: 'Memo de empréstimo',
+        overdueDaysLabel: 'Dias de atraso',
+        overdueTitle: 'Data de devolução ultrapassada (no backup)',
+
+        // Borrower Info
+        borrowerDetail: 'Detalhes do tomador',
+        lastBorrowDate: 'Último empréstimo',
+        totalBorrows: 'Total de empréstimos',
+        times: 'vezes',
+        isActive: 'Status',
+        active: 'Ativo',
+        inactive: 'Inativo',
+        isFavorite: 'Favorito',
+
+        // Location Info
+        locationDetail: 'Detalhes da localização',
+        room: 'Sala',
+        shelf: 'Prateleira',
+        order: 'Ordem',
+        modifiedDate: 'Modificado em',
+
+        // Messages
+        noData: 'Nenhum dado disponível.',
+        unknown: 'Desconhecido',
+
+        // Help
+        helpTitle: '📖 Guia do usuário',
+        helpStep1Title: '1️⃣ Abrir arquivo',
+        helpStep1Desc: 'Clique no botão "📂 Abrir arquivo JSON" e selecione um backup exportado do MyLibrary.',
+        helpStep2Title: '2️⃣ Explorar dados',
+        helpStep2Desc: 'Clique nas abas (Coleção, Lista de desejos, Empréstimos, etc.) para ver cada categoria.',
+        helpStep3Title: '3️⃣ Pesquisar',
+        helpStep3Desc: 'Digite título, autor, ISBN, etc. para encontrar rapidamente um item.',
+        helpStep4Title: '4️⃣ Ver detalhes',
+        helpStep4Desc: 'Clique em uma linha da tabela para ver todas as informações detalhadas desse item.',
+        helpStep5Title: '5️⃣ Exportar',
+        helpStep5Desc: 'Exporte os dados exibidos para CSV.',
+        helpFeaturesTitle: '✨ Funcionalidades principais',
+        helpFeature1: '🔄 Auto-salvamento: o último arquivo aberto é carregado automaticamente (válido por 7 dias)',
+        helpFeature2: '🌐 Multilíngue: suporte para inglês, coreano, japonês, alemão, francês, espanhol, português e chinês tradicional.',
+        helpFeature3: '🔒 Privacidade: todos os dados são processados localmente no navegador',
+        helpFeature4: '📱 Responsivo: funciona em várias larguras de tela (recomendado: 960px+)',
+
+        dateFormat: 'pt-PT'
+    },
+    zh: {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 開啟 JSON 檔案',
+        exportCsv: '📊 匯出 CSV',
+
+        // File Info
+        fileName: '檔案名稱：',
+        filePath: '路徑：',
+        backupDate: '備份日期：',
+        backupNotice: '所有借閱狀態與逾期資訊皆依備份建立時間顯示。',
+
+        // Tabs
+        books: '📖 收藏',
+        loans: '📤 借閱',
+        borrowers: '👥 借閱者',
+        wishlist: '⭐ 願望清單',
+        locations: '📍 館藏位置',
+
+        // Search
+        searchPlaceholder: '搜尋...',
+        clearSearch: '🔄 清除',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: '瀏覽由 MyLibrary Management 匯出的 JSON 備份檔案。',
+
+        // Table Headers - Books
+        cover: '📚 封面',
+        title: '書名',
+        author: '作者',
+        publisher: '出版社',
+        isbn: 'ISBN',
+        category: '分類',
+        location: '位置',
+        locationIdLabel: '位置ID',
+        status: '狀態',
+
+        // Table Headers - Loans
+        bookTitle: '書名',
+        borrower: '借閱者',
+        loanDate: '借閱日期',
+        dueDate: '應還日期',
+        returnDate: '歸還日期',
+
+        // Table Headers - Borrowers
+        info1: '資訊1',
+        info2: '資訊2',
+        createdDate: '建立時間',
+
+        // Table Headers - Wishlist
+        price: '價格',
+        priority: '優先順序',
+        addedDate: '新增時間',
+
+        // Table Headers - Locations
+        name: '名稱',
+        description: '描述',
+
+        // Reading Status
+        unread: '未讀',
+        reading: '閱讀中',
+        read: '已讀',
+
+        // Loan Status
+        returned: '已還書',
+        onLoan: '備份時借閱中',
+        overdue: '備份時逾期',
+        overdueDays: '天',
+
+        // Detail Info
+        basicInfo: '基本資訊',
+        collectionInfo: '收藏資訊',
+        readingRecord: '閱讀紀錄',
+        loanHistory: '借閱歷史',
+        otherInfo: '其他資訊',
+        mediaType: '媒體類型',
+        rating: '評分',
+        readStatus: '閱讀狀態',
+        pages: '頁數',
+        language: '語言',
+        apiSource: '資料來源',
+        note: '筆記',
+        memo: '備註',
+        publishDate: '出版日期',
+        description: '描述',
+
+        // Reading Record
+        startReadingDate: '開始閱讀',
+        finishReadingDate: '完成閱讀',
+        emotionTag: '情緒標籤',
+        readingNote: '閱讀筆記',
+
+        // Media Types
+        mediaTypeBook: '書籍',
+        mediaTypeEbook: '電子書',
+        mediaTypeAudiobook: '有聲書',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: '黑膠',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: '藍光',
+        mediaTypeComic: '漫畫',
+        mediaTypeManga: '動漫',
+        mediaTypeMagazine: '雜誌',
+        mediaTypeOther: '其他',
+
+        // Media Specific
+        ebookInfo: '電子書資訊',
+        audioInfo: '音訊資訊',
+        videoInfo: '影片資訊',
+        comicInfo: '漫畫資訊',
+        fileFormat: '檔案格式',
+        fileSize: '檔案大小',
+        filePath: '檔案路徑',
+        artist: '藝術家',
+        albumName: '專輯',
+        trackCount: '曲目數',
+        tracks: '曲目',
+        director: '導演',
+        cast: '演員',
+        runningTime: '片長',
+        minutes: '分鐘',
+        volumeNumber: '卷數',
+        volume: '卷',
+        seriesName: '系列',
+        isComplete: '完結狀態',
+        completed: '完結',
+        ongoing: '連載中',
+        coverUrl: '封面 URL',
+        highResCoverUrl: '高解析度封面 URL',
+        localCoverPath: '本機封面路徑',
+
+        // Loan Info
+        loanInfo: '借閱資訊',
+        bookInfo: '書籍資訊',
+        borrowerInfo: '借閱者資訊',
+        loanDetail: '借閱細節',
+        borrowerNote: '借閱者備註',
+        loanMemo: '借閱備註',
+        overdueDaysLabel: '逾期天數',
+        overdueTitle: '備份時超過還書日',
+
+        // Borrower Info
+        borrowerDetail: '借閱者詳情',
+        lastBorrowDate: '最後借閱日',
+        totalBorrows: '總借閱次數',
+        times: '次',
+        isActive: '狀態',
+        active: '啟用',
+        inactive: '停用',
+        isFavorite: '最愛',
+
+        // Location Info
+        locationDetail: '位置資訊',
+        room: '房間',
+        shelf: '書架',
+        order: '排序',
+        modifiedDate: '更新日期',
+
+        // Messages
+        noData: '沒有可用的資料。',
+        unknown: '未知',
+
+        // Help
+        helpTitle: '📖 使用指南',
+        helpStep1Title: '1️⃣ 開啟檔案',
+        helpStep1Desc: '點擊「📂 開啟 JSON 檔案」按鈕，選擇從 MyLibrary 匯出的備份檔案。',
+        helpStep2Title: '2️⃣ 探索資料',
+        helpStep2Desc: '點擊上方分頁（收藏、願望清單、借閱等）以查看各類別內容。',
+        helpStep3Title: '3️⃣ 搜尋',
+        helpStep3Desc: '在搜尋框輸入標題、作者、ISBN 等，即可快速找到欲查詢項目。',
+        helpStep4Title: '4️⃣ 檢視細節',
+        helpStep4Desc: '點擊資料列即可查看該項目的完整細節資訊。',
+        helpStep5Title: '5️⃣ 匯出',
+        helpStep5Desc: '將目前畫面資料匯出為 CSV 檔案。',
+        helpFeaturesTitle: '✨ 主要功能',
+        helpFeature1: '🔄 自動儲存：自動載入上次開啟的檔案（有效期限 7 天）',
+        helpFeature2: '🌐 多語系：支援英文、韓文、日文、德文、法文、西班牙文、葡萄牙文與繁體中文。',
+        helpFeature3: '🔒 隱私保護：所有資料皆在瀏覽器中本地處理',
+        helpFeature4: '📱 響應式：支援各種畫面尺寸（建議 960px 以上）',
+
+        dateFormat: 'zh-TW'
+    }
+};
+
+Object.entries(localeOverrides).forEach(([lang, overrides]) => {
+    translations[lang] = {
+        ...translations.en,
+        ...overrides
+    };
+});
+
+// CSV header keys are ordered to match the Android backup export fields.
+const csvHeaderKeys = [
+    'isbn',
+    'title',
+    'author',
+    'publisher',
+    'publishDate',
+    'category',
+    'pages',
+    'language',
+    'location',
+    'locationIdLabel',
+    'rating',
+    'readStatus',
+    'description',
+    'note',
+    'coverUrl',
+    'highResCoverUrl',
+    'localCoverPath',
+    'price',
+    'mediaType',
+    'fileFormat',
+    'fileSize',
+    'filePath',
+    'artist',
+    'albumName',
+    'trackCount',
+    'director',
+    'cast',
+    'runningTime',
+    'volumeNumber',
+    'seriesName',
+    'isComplete',
+    'addedDate',
+    'modifiedDate',
+    'apiSource'
+];
 
 // 番役 함수
 function t(key) {
@@ -775,6 +1567,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (lang.startsWith('ko')) return 'ko';
         if (lang.startsWith('ja')) return 'ja';
         if (lang.startsWith('de')) return 'de';
+        if (lang.startsWith('fr')) return 'fr';
+        if (lang.startsWith('es')) return 'es';
+        if (lang.startsWith('pt')) return 'pt';
+        if (lang.startsWith('zh')) return 'zh';
         return 'en';
     }
     
@@ -1937,18 +2733,8 @@ function generateBooksCsv(books) {
     // UTF-8 BOM 추가 (Excel에서 한글 깨짐 방지)
     const BOM = '\uFEFF';
     
-    // 헤더 (33개 필드 - Android 앱과 동일)
-    const headers = [
-        'ISBN', '제목', '저자', '출판사', '출판일',
-        '카테고리', '페이지', '언어', '소장위치', '소장위치ID', '평점',
-        '읽음상태', '설명', '메모', '표지URL', '고해상도표지URL', '로컬표지경로',
-        '가격', '미디어타입',
-        '파일형식', '파일크기', '파일경로',
-        '아티스트', '앨범명', '트랙수',
-        '감독', '출연진', '러닝타임',
-        '권수', '시리즈명', '완결여부',
-        '등록일', '수정일', '데이터출처'
-    ];
+    // 헤더 (Android 앱 백업과 동일한 순서)
+    const headers = csvHeaderKeys.map(key => t(key));
     
     const rows = [headers.join(',')];
     
