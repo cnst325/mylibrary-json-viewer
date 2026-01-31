@@ -253,9 +253,6 @@ table {
 
 thead {
     background: #ecf0f1;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
 th {
@@ -264,6 +261,10 @@ th {
     font-weight: 600;
     color: #2c3e50;
     border-bottom: 2px solid #bdc3c7;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #ecf0f1;
 }
 
 th.sortable {
@@ -504,6 +505,29 @@ tr:last-child td {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
+.book-cover-zoom-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.book-cover-zoom-icon {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    pointer-events: none;
+}
+
 .book-cover-large-placeholder {
     width: 200px;
     height: 280px;
@@ -514,6 +538,134 @@ tr:last-child td {
     border-radius: 8px;
     font-size: 72px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 이미지 뷰어 모달 */
+.image-viewer-modal {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.image-viewer-content {
+    background: transparent;
+    border-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-viewer-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: white;
+    padding: 8px;
+    width: 48px;
+    height: 48px;
+    line-height: 32px;
+    border-radius: 50%;
+    z-index: 1001;
+    transition: background 0.2s;
+}
+
+.image-viewer-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+#imageViewerContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 20px;
+}
+
+.image-size-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.image-size-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.image-size-option:hover {
+    transform: scale(1.05);
+}
+
+.image-size-preview {
+    width: 56px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid transparent;
+}
+
+.image-size-option.selected .image-size-preview {
+    border-color: white;
+}
+
+.image-size-label {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.image-size-option.selected .image-size-label {
+    color: white;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.image-viewer-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: calc(100vh - 140px);
+}
+
+.image-viewer-main img {
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.image-viewer-loading {
+    color: white;
+    font-size: 16px;
+}
+
+.image-viewer-error {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
 }
 
 /* 좁은 화면 안내 */

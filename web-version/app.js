@@ -3,7 +3,7 @@ let libraryData = null;
 let currentTab = 'books';
 let searchTerm = '';
 let backupTimestamp = null; // 백업 생성 시점
-let currentLanguage = 'ko'; // 기본 언어: 한국어
+let currentLanguage = 'en'; // 기본 언어: 영어
 
 // 정렬 상태
 let sortState = {
@@ -190,7 +190,7 @@ const translations = {
         helpStep5Desc: '보고 있는 데이터를 CSV 형식으로 내보낼 수 있습니다.',
         helpFeaturesTitle: '✨ 주요 기능',
         helpFeature1: '🔄 자동 저장: 마지막으로 연 파일이 자동으로 로드됩니다 (7일간 유효)',
-        helpFeature2: '🌐 다국어: 영어/한국어/일본어/독일어/프랑스어/스페인어/포르투갈어/중국어(번체) 지원',
+        helpFeature2: '🌐 다국어: 영어/한국어/일본어/독일어/프랑스어/스페인어/이탈리아어/포르투갈어/중국어(번체) 지원',
         helpFeature3: '🔒 개인정보 보호: 모든 데이터는 브라우저 내에서만 처리됩니다',
         helpFeature4: '📱 반응형: 다양한 화면 크기 지원 (권장: 960px 이상)',
         
@@ -779,7 +779,7 @@ const localeOverrides = {
         welcomeDesc: 'Consultez les fichiers JSON exportés depuis l\'application MyLibrary Management.',
 
         // Table Headers - Books
-        cover: '📚 Couverture',
+        cover: 'Couverture',
         title: 'Titre',
         author: 'Auteur',
         publisher: 'Éditeur',
@@ -961,7 +961,7 @@ const localeOverrides = {
         welcomeDesc: 'Visualiza archivos JSON exportados desde la app MyLibrary Management.',
 
         // Table Headers - Books
-        cover: '📚 Portada',
+        cover: 'Portada',
         title: 'Título',
         author: 'Autor',
         publisher: 'Editorial',
@@ -1116,6 +1116,188 @@ const localeOverrides = {
 
         dateFormat: 'es-ES'
     },
+    it: {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 Apri file JSON',
+        exportCsv: '📊 Esporta CSV',
+
+        // File Info
+        fileName: 'Nome file:',
+        filePath: 'Percorso:',
+        backupDate: 'Data backup:',
+        backupNotice: 'Tutte le informazioni sui prestiti e sui ritardi sono visualizzate in base al momento della creazione del backup.',
+
+        // Tabs
+        books: '📖 Collezione',
+        loans: '📤 Prestiti',
+        borrowers: '👥 Mutuatari',
+        wishlist: '⭐ Lista desideri',
+        locations: '📍 Posizioni',
+
+        // Search
+        searchPlaceholder: 'Cerca...',
+        clearSearch: '🔄 Cancella',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: 'Visualizza i file di backup JSON esportati dall\'app MyLibrary Management.',
+
+        // Table Headers - Books
+        cover: 'Copertina',
+        title: 'Titolo',
+        author: 'Autore',
+        publisher: 'Editore',
+        isbn: 'ISBN',
+        category: 'Categoria',
+        location: 'Posizione',
+        locationIdLabel: 'ID posizione',
+        status: 'Stato',
+
+        // Table Headers - Loans
+        bookTitle: 'Titolo libro',
+        borrower: 'Mutuatario',
+        loanDate: 'Data prestito',
+        dueDate: 'Data scadenza',
+        returnDate: 'Data restituzione',
+
+        // Table Headers - Borrowers
+        info1: 'Info 1',
+        info2: 'Info 2',
+        createdDate: 'Creato',
+
+        // Table Headers - Wishlist
+        price: 'Prezzo',
+        priority: 'Priorità',
+        addedDate: 'Data aggiunta',
+
+        // Table Headers - Locations
+        name: 'Nome',
+        description: 'Descrizione',
+
+        // Reading Status
+        unread: 'Non letto',
+        reading: 'In lettura',
+        read: 'Letto',
+
+        // Loan Status
+        returned: 'Restituito',
+        onLoan: 'In prestito (al momento del backup)',
+        overdue: 'In ritardo (al momento del backup)',
+        overdueDays: 'gg',
+
+        // Detail Info
+        basicInfo: 'Informazioni di base',
+        collectionInfo: 'Informazioni collezione',
+        readingRecord: 'Registro lettura',
+        loanHistory: 'Cronologia prestiti',
+        otherInfo: 'Altre informazioni',
+        mediaType: 'Tipo di media',
+        rating: 'Valutazione',
+        readStatus: 'Stato lettura',
+        pages: 'Pagine',
+        language: 'Lingua',
+        apiSource: 'Fonte dati',
+        note: 'Nota',
+        memo: 'Memo',
+        publishDate: 'Data pubblicazione',
+        description: 'Descrizione',
+
+        // Reading Record
+        startReadingDate: 'Inizio lettura',
+        finishReadingDate: 'Fine lettura',
+        emotionTag: 'Tag emotivo',
+        readingNote: 'Nota di lettura',
+
+        // Media Types
+        mediaTypeBook: 'Libro',
+        mediaTypeEbook: 'E-book',
+        mediaTypeAudiobook: 'Audiolibro',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: 'Vinile',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: 'Blu-ray',
+        mediaTypeComic: 'Fumetto',
+        mediaTypeManga: 'Manga',
+        mediaTypeMagazine: 'Rivista',
+        mediaTypeOther: 'Altro',
+
+        // Media Specific
+        ebookInfo: 'Informazioni e-book',
+        audioInfo: 'Informazioni audio',
+        videoInfo: 'Informazioni video',
+        comicInfo: 'Informazioni fumetto',
+        fileFormat: 'Formato file',
+        fileSize: 'Dimensione file',
+        filePath: 'Percorso file',
+        artist: 'Artista',
+        albumName: 'Album',
+        trackCount: 'Tracce',
+        tracks: 'tracce',
+        director: 'Regista',
+        cast: 'Cast',
+        runningTime: 'Durata',
+        minutes: 'min',
+        volumeNumber: 'Volume',
+        volume: 'vol',
+        seriesName: 'Serie',
+        isComplete: 'Stato',
+        completed: 'Completato',
+        ongoing: 'In corso',
+        coverUrl: 'URL copertina',
+        highResCoverUrl: 'URL copertina HD',
+        localCoverPath: 'Percorso copertina locale',
+
+        // Loan Info
+        loanInfo: 'Informazioni prestito',
+        bookInfo: 'Informazioni libro',
+        borrowerInfo: 'Informazioni mutuatario',
+        loanDetail: 'Dettagli prestito',
+        borrowerNote: 'Nota mutuatario',
+        loanMemo: 'Memo prestito',
+        overdueDaysLabel: 'Giorni di ritardo',
+        overdueTitle: 'Data di restituzione scaduta (al momento del backup)',
+
+        // Borrower Info
+        borrowerDetail: 'Dettagli mutuatario',
+        lastBorrowDate: 'Ultimo prestito',
+        totalBorrows: 'Prestiti totali',
+        times: 'volte',
+        isActive: 'Stato',
+        active: 'Attivo',
+        inactive: 'Inattivo',
+        isFavorite: 'Preferito',
+
+        // Location Info
+        locationDetail: 'Dettagli posizione',
+        room: 'Stanza',
+        shelf: 'Scaffale',
+        order: 'Ordine',
+        modifiedDate: 'Modificato',
+
+        // Messages
+        noData: 'Nessun dato disponibile.',
+        unknown: 'Sconosciuto',
+
+        // Help
+        helpTitle: '📖 Guida all\'uso',
+        helpStep1Title: '1️⃣ Apri file',
+        helpStep1Desc: 'Fai clic sul pulsante "📂 Apri file JSON" e seleziona un file di backup esportato da MyLibrary.',
+        helpStep2Title: '2️⃣ Esplora i dati',
+        helpStep2Desc: 'Fai clic sulle schede (Collezione, Lista desideri, Prestiti, ecc.) per visualizzare ciascuna categoria.',
+        helpStep3Title: '3️⃣ Cerca',
+        helpStep3Desc: 'Digita un titolo, autore, ISBN, ecc. per trovare rapidamente un elemento.',
+        helpStep4Title: '4️⃣ Visualizza dettagli',
+        helpStep4Desc: 'Fai clic su una riga della tabella per visualizzare tutte le informazioni dettagliate.',
+        helpStep5Title: '5️⃣ Esporta',
+        helpStep5Desc: 'Esporta i dati visualizzati in formato CSV.',
+        helpFeaturesTitle: '✨ Caratteristiche principali',
+        helpFeature1: '🔄 Salvataggio automatico: l\'ultimo file aperto viene ricaricato automaticamente (valido per 7 giorni)',
+        helpFeature2: '🌐 Multilingue: supporto per inglese, coreano, giapponese, tedesco, francese, spagnolo, italiano, portoghese e cinese tradizionale.',
+        helpFeature3: '🔒 Privacy: tutti i dati vengono elaborati localmente nel tuo browser',
+        helpFeature4: '📱 Responsive: compatibile con varie dimensioni dello schermo (consigliato: 960px+)',
+
+        dateFormat: 'it-IT'
+    },
     pt: {
         appTitle: 'MyLibrary JSON Viewer',
         openFile: '📂 Abrir arquivo JSON',
@@ -1143,7 +1325,7 @@ const localeOverrides = {
         welcomeDesc: 'Visualize arquivos JSON exportados do app MyLibrary Management.',
 
         // Table Headers - Books
-        cover: '📚 Capa',
+        cover: 'Capa',
         title: 'Título',
         author: 'Autor',
         publisher: 'Editora',
@@ -1325,7 +1507,7 @@ const localeOverrides = {
         welcomeDesc: '瀏覽由 MyLibrary Management 匯出的 JSON 備份檔案。',
 
         // Table Headers - Books
-        cover: '📚 封面',
+        cover: '封面',
         title: '書名',
         author: '作者',
         publisher: '出版社',
@@ -1569,6 +1751,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (lang.startsWith('de')) return 'de';
         if (lang.startsWith('fr')) return 'fr';
         if (lang.startsWith('es')) return 'es';
+        if (lang.startsWith('it')) return 'it';
         if (lang.startsWith('pt')) return 'pt';
         if (lang.startsWith('zh')) return 'zh';
         return 'en';
@@ -1614,11 +1797,15 @@ function initializeEventListeners() {
     const fileInput = document.getElementById('fileInput');
     if (fileInput) {
         fileInput.addEventListener('change', handleFileSelect);
+        
+        // 파일 열기 버튼
+        if (elements.openFileBtn) {
+            elements.openFileBtn.addEventListener('click', () => fileInput.click());
+        }
+        if (elements.openFileBtn2) {
+            elements.openFileBtn2.addEventListener('click', () => fileInput.click());
+        }
     }
-    
-    // 파일 열기 버튼
-    elements.openFileBtn.addEventListener('click', () => fileInput.click());
-    elements.openFileBtn2.addEventListener('click', () => fileInput.click());
     
     // 도움말 버튼
     if (elements.helpBtn) {
@@ -1636,36 +1823,63 @@ function initializeEventListeners() {
     }
     
     // 내보내기 버튼
-    elements.exportCsvBtn.addEventListener('click', exportToCsv);
+    if (elements.exportCsvBtn) {
+        elements.exportCsvBtn.addEventListener('click', exportToCsv);
+    }
     
     // 탭 전환
-    elements.tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabName = tab.dataset.tab;
-            switchTab(tabName);
+    if (elements.tabs) {
+        elements.tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                switchTab(tabName);
+            });
         });
-    });
+    }
     
     // 검색
-    elements.searchInput.addEventListener('input', (e) => {
-        searchTerm = e.target.value.toLowerCase();
-        renderCurrentTab();
-    });
+    if (elements.searchInput) {
+        elements.searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value.toLowerCase();
+            renderCurrentTab();
+        });
+    }
     
     // 검색 초기화
-    elements.clearSearch.addEventListener('click', () => {
-        elements.searchInput.value = '';
-        searchTerm = '';
-        renderCurrentTab();
-    });
+    if (elements.clearSearch) {
+        elements.clearSearch.addEventListener('click', () => {
+            elements.searchInput.value = '';
+            searchTerm = '';
+            renderCurrentTab();
+        });
+    }
     
-    // 모달 닫기
-    document.querySelector('.modal-close').addEventListener('click', closeModal);
-    elements.detailModal.addEventListener('click', (e) => {
-        if (e.target === elements.detailModal) {
-            closeModal();
-        }
-    });
+    // 모달 닫기 - 상세보기 모달
+    const detailModalClose = elements.detailModal?.querySelector('.modal-close');
+    if (detailModalClose) {
+        detailModalClose.addEventListener('click', closeModal);
+    }
+    if (elements.detailModal) {
+        elements.detailModal.addEventListener('click', (e) => {
+            if (e.target === elements.detailModal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // 이미지 뷰어 모달 닫기
+    const imageViewerModal = document.getElementById('imageViewerModal');
+    const imageViewerClose = imageViewerModal?.querySelector('.modal-close');
+    if (imageViewerClose) {
+        imageViewerClose.addEventListener('click', closeImageViewer);
+    }
+    if (imageViewerModal) {
+        imageViewerModal.addEventListener('click', (e) => {
+            if (e.target === imageViewerModal) {
+                closeImageViewer();
+            }
+        });
+    }
 }
 
 // UI 언어 업데이트
@@ -2200,6 +2414,9 @@ function showBookDetail(id) {
     
     const coverImageHtml = getBookCoverImageLarge(book);
     
+    // 책 데이터를 전역에 저장 (이미지 뷰어에서 사용)
+    window.currentDetailBook = book;
+    
     // 현재 대출 정보 조회
     const currentLoan = getCurrentLoan(book.id);
     const loanHistory = getLoanHistory(book.id);
@@ -2315,6 +2532,9 @@ function showWishlistDetail(id) {
     if (!item) return;
     
     const coverImageHtml = getWishlistCoverImageLarge(item);
+    
+    // 위시리스트 데이터를 전역에 저장 (이미지 뷰어에서 사용)
+    window.currentDetailBook = item;
     
     const html = `
         <h2>⭐ ${escapeHtml(item.title)}</h2>
@@ -2502,7 +2722,10 @@ function getBookCoverImageLarge(book) {
         return '<div class="book-cover-large-placeholder">📚</div>';
     }
     
-    return `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(book.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>📚</div>';">`;
+    return `<div class="book-cover-zoom-wrapper" onclick="openImageViewer(window.currentDetailBook)">
+        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(book.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>📚</div>';">
+        <div class="book-cover-zoom-icon" aria-hidden="true">🔍</div>
+    </div>`;
 }
 
 // 위시리스트 표지 이미지 (상세보기용 - 큰 크기)
@@ -2517,7 +2740,10 @@ function getWishlistCoverImageLarge(item) {
         return '<div class="book-cover-large-placeholder">⭐</div>';
     }
     
-    return `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>⭐</div>';">`;
+    return `<div class="book-cover-zoom-wrapper" onclick="openImageViewer(window.currentDetailBook)">
+        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>⭐</div>';">
+        <div class="book-cover-zoom-icon" aria-hidden="true">🔍</div>
+    </div>`;
 }
 
 // 현재 대출 정보 조회
@@ -2967,4 +3193,160 @@ function sortWishlist(wishlist) {
     });
     
     return sorted;
+}
+
+// ========================================
+// 이미지 뷰어 기능
+// ========================================
+
+/**
+ * 고해상도 이미지 뷰어 모달 열기
+ * @param {Object} book - 책 또는 위시리스트 아이템 객체
+ * @param {string} book.highResCoverUrl - 고해상도 표지 URL
+ * @param {string} book.coverUrl - 일반 표지 URL
+ * @param {string} book.localCoverPath - 로컬 표지 경로
+ * @param {string} book.title - 책 제목
+ */
+function openImageViewer(book) {
+    const modal = document.getElementById('imageViewerModal');
+    const container = document.getElementById('imageViewerContainer');
+    
+    if (!modal || !container) return;
+    
+    // URL 우선순위: highResCoverUrl > coverUrl > localCoverPath
+    const imageUrls = [
+        book.highResCoverUrl,
+        book.coverUrl,
+        book.localCoverPath
+    ].filter(url => url && !url.startsWith('/') && !url.startsWith('file://'));
+    
+    if (imageUrls.length === 0) {
+        return; // 유효한 이미지 URL이 없으면 뷰어를 열지 않음
+    }
+    
+    // Google Books URL 처리 - zoom 파라미터 변경
+    const googleBookUrls = imageUrls.filter(url => 
+        url.includes('books.google.') && url.includes('/books/content')
+    );
+    
+    let sizeOptions = [];
+    
+    if (googleBookUrls.length > 0) {
+        const baseUrl = googleBookUrls[0];
+        sizeOptions = [
+            { label: 'large', url: makeGoogleZoomedUrl(baseUrl, 3), zoom: 3 },
+            { label: 'small', url: makeGoogleZoomedUrl(baseUrl, 2), zoom: 2 },
+            { label: 'thumbnail', url: makeGoogleZoomedUrl(baseUrl, 1), zoom: 1 }
+        ];
+    } else {
+        // Google Books가 아닌 경우 단일 URL만 표시
+        sizeOptions = [
+            { label: 'image', url: imageUrls[0], zoom: null }
+        ];
+    }
+    
+    let selectedUrl = sizeOptions[0].url;
+    
+    function renderViewer() {
+        container.innerHTML = '';
+        
+        // 크기 선택 UI (Google Books인 경우만)
+        if (sizeOptions.length > 1) {
+            const selectorDiv = document.createElement('div');
+            selectorDiv.className = 'image-size-selector';
+            
+            sizeOptions.forEach(option => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'image-size-option' + (option.url === selectedUrl ? ' selected' : '');
+                optionDiv.onclick = () => {
+                    selectedUrl = option.url;
+                    renderViewer();
+                };
+                
+                const previewImg = document.createElement('img');
+                previewImg.src = option.url;
+                previewImg.className = 'image-size-preview';
+                previewImg.alt = option.label;
+                
+                const labelSpan = document.createElement('span');
+                labelSpan.className = 'image-size-label';
+                labelSpan.textContent = option.label;
+                
+                optionDiv.appendChild(previewImg);
+                optionDiv.appendChild(labelSpan);
+                selectorDiv.appendChild(optionDiv);
+            });
+            
+            container.appendChild(selectorDiv);
+        }
+        
+        // 메인 이미지 표시
+        const mainDiv = document.createElement('div');
+        mainDiv.className = 'image-viewer-main';
+        
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'image-viewer-loading';
+        loadingDiv.textContent = 'Loading...';
+        mainDiv.appendChild(loadingDiv);
+        
+        const mainImg = document.createElement('img');
+        mainImg.src = selectedUrl;
+        mainImg.alt = escapeHtml(book.title || 'Cover');
+        mainImg.style.display = 'none';
+        
+        mainImg.onload = () => {
+            loadingDiv.remove();
+            mainImg.style.display = 'block';
+        };
+        
+        mainImg.onerror = () => {
+            loadingDiv.textContent = 'Failed to load image';
+            loadingDiv.className = 'image-viewer-error';
+        };
+        
+        mainDiv.appendChild(mainImg);
+        container.appendChild(mainDiv);
+    }
+    
+    renderViewer();
+    modal.classList.remove('hidden');
+}
+
+/**
+ * Google Books URL의 zoom 파라미터 변경
+ * @param {string} url - 원본 URL
+ * @param {number} zoom - zoom 값 (1=thumbnail, 2=small, 3=large)
+ * @returns {string} - 수정된 URL
+ */
+function makeGoogleZoomedUrl(url, zoom) {
+    if (!url) return url;
+    
+    const sanitized = url.replace('http://', 'https://');
+    const zoomRegex = /zoom=\d+/;
+    
+    let withZoom;
+    if (zoomRegex.test(sanitized)) {
+        withZoom = sanitized.replace(zoomRegex, `zoom=${zoom}`);
+    } else {
+        const separator = sanitized.includes('?') ? '&' : '?';
+        withZoom = `${sanitized}${separator}zoom=${zoom}`;
+    }
+    
+    // printsec=frontcover 파라미터 추가
+    if (!withZoom.includes('printsec=')) {
+        const separator = withZoom.includes('?') ? '&' : '?';
+        withZoom = `${withZoom}${separator}printsec=frontcover`;
+    }
+    
+    return withZoom;
+}
+
+/**
+ * 이미지 뷰어 모달 닫기
+ */
+function closeImageViewer() {
+    const modal = document.getElementById('imageViewerModal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
 }
