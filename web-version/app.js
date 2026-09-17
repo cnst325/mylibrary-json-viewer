@@ -179,20 +179,20 @@ const translations = {
         // 도움말
         helpTitle: '📖 사용 가이드',
         helpStep1Title: '1️⃣ 파일 열기',
-        helpStep1Desc: '"📂 JSON 파일 열기" 버튼을 클릭하여 MyLibrary 앱에서 내보낸 백업 파일을 선택하세요.',
+        helpStep1Desc: '상단의 "📂 JSON 파일 열기" 버튼을 클릭하여 MyLibrary 앱에서 내보낸 백업 파일(.json)을 선택하세요.',
         helpStep2Title: '2️⃣ 데이터 탐색',
-        helpStep2Desc: '상단 탭(소장 자료, 위시리스트, 대출 관리 등)을 클릭하여 각 카테고리의 데이터를 확인하세요.',
+        helpStep2Desc: '상단 탭(소장 자료, 대출 관리, 대출자, 위시리스트, 보관 위치)을 클릭하여 각 카테고리의 데이터를 확인하세요.',
         helpStep3Title: '3️⃣ 검색',
-        helpStep3Desc: '검색창에 제목, 저자, ISBN 등을 입력하여 원하는 항목을 빠르게 찾을 수 있습니다.',
+        helpStep3Desc: '검색창에 도서 제목, 저자, 출판사, ISBN 등을 입력하여 원하는 항목을 실시간으로 빠르게 찾을 수 있습니다.',
         helpStep4Title: '4️⃣ 상세 보기',
-        helpStep4Desc: '테이블의 행을 클릭하면 해당 항목의 모든 상세 정보를 확인할 수 있습니다.',
+        helpStep4Desc: '목록의 행을 클릭하면 상세 정보를 확인할 수 있으며, 책 표지를 클릭하면 고해상도 확대 뷰어로 크게 볼 수 있습니다.',
         helpStep5Title: '5️⃣ 내보내기',
-        helpStep5Desc: '보고 있는 데이터를 CSV 형식으로 내보낼 수 있습니다.',
+        helpStep5Desc: '현재 보고 있는 소장 도서 목록 데이터를 CSV 파일(Excel 호환)로 내보낼 수 있습니다.',
         helpFeaturesTitle: '✨ 주요 기능',
-        helpFeature1: '🔄 자동 저장: 마지막으로 연 파일이 자동으로 로드됩니다 (7일간 유효)',
-        helpFeature2: '🌐 다국어: 영어/한국어/일본어/독일어/프랑스어/스페인어/이탈리아어/포르투갈어/중국어(번체) 지원',
-        helpFeature3: '🔒 개인정보 보호: 모든 데이터는 브라우저 내에서만 처리됩니다',
-        helpFeature4: '📱 반응형: 다양한 화면 크기 지원 (권장: 960px 이상)',
+        helpFeature1: '🔄 자동 저장: 마지막으로 열었던 파일이 브라우저에 자동 저장되어 다시 열립니다 (최대 7일간 유지)',
+        helpFeature2: '🌐 다국어 지원: 한국어, 영어, 일본어, 중국어(간체/번체), 독일어, 프랑스어, 스페인어, 이탈리아어, 포르투갈어 지원',
+        helpFeature3: '🔒 개인정보 보호: 모든 데이터는 브라우저 내부에서만 안전하게 로컬로 처리됩니다 (외부 서버 전송 없음)',
+        helpFeature4: '📱 반응형 UI: 데스크톱 및 태블릿 등 다양한 화면 크기 지원 (최적 해상도: 960px 이상)',
         
         // 날짜 형식
         dateFormat: 'ko-KR'
@@ -363,20 +363,20 @@ const translations = {
         // Help
         helpTitle: '📖 User Guide',
         helpStep1Title: '1️⃣ Open File',
-        helpStep1Desc: 'Click "📂 Open JSON File" button and select a backup file exported from MyLibrary app.',
+        helpStep1Desc: 'Click the "📂 Open JSON File" button and select a backup file (.json) exported from the MyLibrary app.',
         helpStep2Title: '2️⃣ Explore Data',
-        helpStep2Desc: 'Click tabs (Collection, Wishlist, Loans, etc.) to view data in each category.',
+        helpStep2Desc: 'Click the tabs (Collection, Loans, Borrowers, Wishlist, Locations) to browse data in each category.',
         helpStep3Title: '3️⃣ Search',
-        helpStep3Desc: 'Enter title, author, ISBN, etc. in the search box to quickly find items.',
+        helpStep3Desc: 'Type a title, author, publisher, ISBN, etc. in the search box to quickly filter and find items in real time.',
         helpStep4Title: '4️⃣ View Details',
-        helpStep4Desc: 'Click any row in the table to see all detailed information for that item.',
+        helpStep4Desc: 'Click any row in the table to view full details. You can also click the book cover to enlarge it in high resolution.',
         helpStep5Title: '5️⃣ Export',
-        helpStep5Desc: 'Export the data you are viewing to CSV format.',
+        helpStep5Desc: 'Export the currently displayed collection data into a CSV file for Excel and spreadsheet tools.',
         helpFeaturesTitle: '✨ Key Features',
-        helpFeature1: '🔄 Auto-Save: Last opened file loads automatically (valid for 7 days)',
-        helpFeature2: '🌐 Multilingual: English, Korean, Japanese, German, French, Spanish, Portuguese, and Traditional Chinese support',
-        helpFeature3: '🔒 Privacy: All data processed locally in your browser',
-        helpFeature4: '📱 Responsive: Supports various screen sizes (recommended: 960px+)',
+        helpFeature1: '🔄 Auto-Save: The last opened file is saved in your browser and automatically restored (valid for 7 days)',
+        helpFeature2: '🌐 Multilingual: English, Korean, Japanese, Simplified Chinese, Traditional Chinese, German, French, Spanish, Italian, and Portuguese support',
+        helpFeature3: '🔒 Privacy First: All data is processed locally in your browser (no server uploads)',
+        helpFeature4: '📱 Responsive UI: Supports various screen sizes on desktop and tablet (recommended: 960px+)',
         
         // Date Format
         dateFormat: 'en-US'
@@ -547,20 +547,20 @@ const translations = {
         // ヘルプ
         helpTitle: '📖 使い方ガイド',
         helpStep1Title: '1️⃣ ファイルを開く',
-        helpStep1Desc: '「📂 JSONファイルを開く」ボタンをクリックして、MyLibraryアプリからエクスポートしたバックアップファイルを選択してください。',
+        helpStep1Desc: '「📂 JSONファイルを開く」ボタンをクリックし、MyLibraryアプリからエクスポートしたバックアップファイル（.json）を選択してください。',
         helpStep2Title: '2️⃣ データ探索',
-        helpStep2Desc: '上部のタブ（コレクション、ウィッシュリスト、貸出など）をクリックして、各カテゴリーのデータを確認してください。',
+        helpStep2Desc: '上部タブ（蔵書、貸出、借主、欲しい本、保管場所）をクリックして、各カテゴリーのデータを確認できます。',
         helpStep3Title: '3️⃣ 検索',
-        helpStep3Desc: '検索ボックスにタイトル、著者、ISBNなどを入力して、目的のアイテムを素早く見つけられます。',
+        helpStep3Desc: '検索ボックスにタイトル、著者、出版社、ISBNなどを入力すると、目的のデータを素早く検索できます。',
         helpStep4Title: '4️⃣ 詳細表示',
-        helpStep4Desc: 'テーブルの行をクリックすると、そのアイテムのすべての詳細情報を確認できます。',
+        helpStep4Desc: '行をクリックすると詳細情報を確認できます。また、表紙画像をクリックすると高解像度ビューアで大きく拡大表示できます。',
         helpStep5Title: '5️⃣ エクスポート',
-        helpStep5Desc: '表示中のデータをCSV形式でエクスポートできます。',
+        helpStep5Desc: '表示中の蔵書データをCSVファイル（Excel対応）としてエクスポートできます。',
         helpFeaturesTitle: '✨ 主な機能',
-        helpFeature1: '🔄 自動保存: 最後に開いたファイルが自動的に読み込まれます（7日間有効）',
-        helpFeature2: '🌐 多言語: 英語/韓国語/日本語/ドイツ語/フランス語/スペイン語/ポルトガル語/繁体字中国語対応',
-        helpFeature3: '🔒 プライバシー保護: すべてのデータはブラウザ内でのみ処理されます',
-        helpFeature4: '📱 レスポンシブ: さまざまな画面サイズに対応（推奨: 960px以上）',
+        helpFeature1: '🔄 自動保存: 最後に開いたファイルがブラウザに自動保存され、次回も読み込まれます（有効期間7日）',
+        helpFeature2: '🌐 多言語対応: 日本語、英語、韓国語、簡体字中国語、繁体字中国語、ドイツ語、フランス語、スペイン語、イタリア語、ポルトガル語対応',
+        helpFeature3: '🔒 プライバシー保護: すべてのデータはブラウザ内でのみローカル処理されます（外部送信なし）',
+        helpFeature4: '📱 レスポンシブUI: デスクトップやタブレットなど多彩な画面サイズに対応（推奨: 960px以上）',
         
         // 日付形式
         dateFormat: 'ja-JP'
@@ -731,20 +731,20 @@ const translations = {
         // Hilfe
         helpTitle: '📖 Benutzerhandbuch',
         helpStep1Title: '1️⃣ Datei öffnen',
-        helpStep1Desc: 'Klicken Sie auf "📂 JSON-Datei öffnen" und wählen Sie eine Backup-Datei aus der MyLibrary-App aus.',
+        helpStep1Desc: 'Klicken Sie auf "📂 JSON-Datei öffnen" und wählen Sie eine aus der MyLibrary-App exportierte Backup-Datei (.json) aus.',
         helpStep2Title: '2️⃣ Daten durchsuchen',
-        helpStep2Desc: 'Klicken Sie auf die Tabs (Sammlung, Wunschliste, Ausleihen usw.), um Daten in jeder Kategorie anzuzeigen.',
+        helpStep2Desc: 'Klicken Sie auf die Registerkarten (Sammlung, Ausleihen, Entleiher, Wunschliste, Standorte), um die einzelnen Kategorien zu durchsuchen.',
         helpStep3Title: '3️⃣ Suchen',
-        helpStep3Desc: 'Geben Sie Titel, Autor, ISBN usw. in das Suchfeld ein, um Einträge schnell zu finden.',
+        helpStep3Desc: 'Geben Sie Titel, Autor, Verlag, ISBN usw. in das Suchfeld ein, um Einträge in Echtzeit schnell zu finden.',
         helpStep4Title: '4️⃣ Details anzeigen',
-        helpStep4Desc: 'Klicken Sie auf eine Zeile in der Tabelle, um alle detaillierten Informationen zu diesem Eintrag anzuzeigen.',
+        helpStep4Desc: 'Klicken Sie auf eine Tabellenzeile für Details. Klicken Sie auf das Buchcover, um es in hoher Auflösung vergrößert anzuzeigen.',
         helpStep5Title: '5️⃣ Exportieren',
-        helpStep5Desc: 'Exportieren Sie die angezeigten Daten in das CSV-Format.',
+        helpStep5Desc: 'Exportieren Sie die angezeigten Sammlungsdaten als CSV-Datei für Excel und Tabellenkalkulationen.',
         helpFeaturesTitle: '✨ Hauptfunktionen',
-        helpFeature1: '🔄 Automatisches Speichern: Die zuletzt geöffnete Datei wird automatisch geladen (7 Tage gültig)',
-        helpFeature2: '🌐 Mehrsprachig: Unterstützung für Englisch, Koreanisch, Japanisch, Deutsch, Französisch, Spanisch, Portugiesisch und traditionelles Chinesisch',
-        helpFeature3: '🔒 Datenschutz: Alle Daten werden nur lokal in Ihrem Browser verarbeitet',
-        helpFeature4: '📱 Responsive: Unterstützt verschiedene Bildschirmgrößen (empfohlen: 960px+)',
+        helpFeature1: '🔄 Automatisches Speichern: Die zuletzt geöffnete Datei wird lokal gespeichert und automatisch geladen (7 Tage gültig)',
+        helpFeature2: '🌐 Mehrsprachig: Unterstützung für Deutsch, Englisch, Koreanisch, Japanisch, vereinfachtes Chinesisch, traditionelles Chinesisch, Französisch, Spanisch, Italienisch und Portugiesisch',
+        helpFeature3: '🔒 Datenschutz: Alle Daten werden ausschließlich lokal in Ihrem Browser verarbeitet (kein Server-Upload)',
+        helpFeature4: '📱 Responsive Benutzeroberfläche: Optimiert für Desktop und Tablets (empfohlen: 960px+)',
         
         // Datumsformat
         dateFormat: 'de-DE'
@@ -917,20 +917,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 Guide d\'utilisation',
         helpStep1Title: '1️⃣ Ouvrir un fichier',
-        helpStep1Desc: 'Cliquez sur le bouton "📂 Ouvrir un fichier JSON" et choisissez un fichier de sauvegarde exporté depuis MyLibrary.',
+        helpStep1Desc: 'Cliquez sur le bouton "📂 Ouvrir un fichier JSON" et choisissez un fichier de sauvegarde (.json) exporté depuis MyLibrary.',
         helpStep2Title: '2️⃣ Explorer les données',
-        helpStep2Desc: 'Cliquez sur les onglets (Collection, Liste de souhaits, Prêts, etc.) pour consulter chaque catégorie.',
+        helpStep2Desc: 'Cliquez sur les onglets (Collection, Prêts, Emprunteurs, Liste de souhaits, Emplacements) pour parcourir chaque catégorie.',
         helpStep3Title: '3️⃣ Rechercher',
-        helpStep3Desc: 'Saisissez un titre, un auteur, un ISBN, etc. pour trouver rapidement un élément.',
+        helpStep3Desc: 'Saisissez un titre, auteur, éditeur, ISBN, etc. dans la barre de recherche pour trouver rapidement des éléments en temps réel.',
         helpStep4Title: '4️⃣ Afficher les détails',
-        helpStep4Desc: 'Cliquez sur une ligne du tableau pour voir toutes les informations détaillées.',
+        helpStep4Desc: 'Cliquez sur une ligne du tableau pour afficher tous les détails. Vous pouvez aussi cliquer sur la couverture du livre pour l\'agrandir en haute résolution.',
         helpStep5Title: '5️⃣ Exporter',
-        helpStep5Desc: 'Exportez les données affichées au format CSV.',
+        helpStep5Desc: 'Exportez les données de la collection affichée au format CSV compatible avec Excel.',
         helpFeaturesTitle: '✨ Fonctionnalités clés',
-        helpFeature1: '🔄 Sauvegarde automatique : le dernier fichier ouvert est rechargé automatiquement (valide 7 jours)',
-        helpFeature2: '🌐 Multilingue : prise en charge de l\'anglais, du coréen, du japonais, de l\'allemand, du français, de l\'espagnol, du portugais et du chinois traditionnel.',
-        helpFeature3: '🔒 Confidentialité : toutes les données sont traitées localement dans votre navigateur',
-        helpFeature4: '📱 Responsive : compatible avec diverses tailles d\'écran (recommandé : 960px+)',
+        helpFeature1: '🔄 Sauvegarde automatique : le dernier fichier ouvert est conservé et rechargé automatiquement (valide 7 jours)',
+        helpFeature2: '🌐 Multilingue : prise en charge du français, de l\'anglais, du coréen, du japonais, du chinois simplifié, du chinois traditionnel, de l\'allemand, de l\'espagnol, de l\'italien et du portugais',
+        helpFeature3: '🔒 Confidentialité absolue : toutes vos données sont traitées localement dans votre navigateur (aucun envoi sur serveur)',
+        helpFeature4: '📱 Interface responsive : adaptée à différentes tailles d\'écran (recommandé : 960px ou plus)',
 
         dateFormat: 'fr-FR'
     },
@@ -1099,20 +1099,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 Guía de uso',
         helpStep1Title: '1️⃣ Abrir archivo',
-        helpStep1Desc: 'Haz clic en el botón "📂 Abrir archivo JSON" y selecciona una copia de seguridad exportada desde MyLibrary.',
+        helpStep1Desc: 'Haz clic en el botón "📂 Abrir archivo JSON" y selecciona una copia de seguridad (.json) exportada desde la app MyLibrary.',
         helpStep2Title: '2️⃣ Explorar datos',
-        helpStep2Desc: 'Haz clic en las pestañas (Colección, Lista de deseos, Préstamos, etc.) para ver cada categoría.',
+        helpStep2Desc: 'Haz clic en las pestañas (Colección, Préstamos, Prestatarios, Lista de deseos, Ubicaciones) para explorar cada categoría.',
         helpStep3Title: '3️⃣ Buscar',
-        helpStep3Desc: 'Escribe título, autor, ISBN, etc. para encontrar el elemento deseado rápidamente.',
+        helpStep3Desc: 'Escribe título, autor, editorial, ISBN, etc. en el cuadro de búsqueda para encontrar elementos en tiempo real.',
         helpStep4Title: '4️⃣ Ver detalles',
-        helpStep4Desc: 'Haz clic en una fila de la tabla para ver toda la información detallada de ese registro.',
+        helpStep4Desc: 'Haz clic en una fila de la tabla para ver todos los detalles. También puedes hacer clic en la portada del libro para ampliarla en alta resolución.',
         helpStep5Title: '5️⃣ Exportar',
-        helpStep5Desc: 'Exporta los datos visibles en formato CSV.',
+        helpStep5Desc: 'Exporta los datos de la colección visible a un archivo CSV compatible con Excel.',
         helpFeaturesTitle: '✨ Funciones clave',
-        helpFeature1: '🔄 Auto-guardado: el último archivo abierto se carga automáticamente (válido 7 días)',
-        helpFeature2: '🌐 Multilingüe: soporte para inglés, coreano, japonés, alemán, francés, español, portugués y chino tradicional.',
-        helpFeature3: '🔒 Privacidad: todos los datos se procesan localmente en el navegador',
-        helpFeature4: '📱 Responsivo: compatible con distintas resoluciones (recomendado: 960px+)',
+        helpFeature1: '🔄 Guardado automático: el último archivo abierto se guarda en el navegador y se carga automáticamente (válido 7 días)',
+        helpFeature2: '🌐 Multilingüe: soporte para español, inglés, coreano, japonés, chino simplificado, chino tradicional, alemán, francés, italiano y portugués',
+        helpFeature3: '🔒 Máxima privacidad: todos los datos se procesan localmente en tu navegador (sin envíos al servidor)',
+        helpFeature4: '📱 Diseño responsivo: compatible con diversas resoluciones de pantalla (recomendado: 960px o más)',
 
         dateFormat: 'es-ES'
     },
@@ -1281,20 +1281,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 Guida all\'uso',
         helpStep1Title: '1️⃣ Apri file',
-        helpStep1Desc: 'Fai clic sul pulsante "📂 Apri file JSON" e seleziona un file di backup esportato da MyLibrary.',
+        helpStep1Desc: 'Fai clic sul pulsante "📂 Apri file JSON" e seleziona un file di backup (.json) esportato dall\'app MyLibrary.',
         helpStep2Title: '2️⃣ Esplora i dati',
-        helpStep2Desc: 'Fai clic sulle schede (Collezione, Lista desideri, Prestiti, ecc.) per visualizzare ciascuna categoria.',
+        helpStep2Desc: 'Fai clic sulle schede (Collezione, Prestiti, Empruntori, Lista desideri, Posizioni) per esplorare ciascuna categoria.',
         helpStep3Title: '3️⃣ Cerca',
-        helpStep3Desc: 'Digita un titolo, autore, ISBN, ecc. per trovare rapidamente un elemento.',
+        helpStep3Desc: 'Digita titolo, autore, editore, ISBN, ecc. nella casella di ricerca per trovare rapidamente gli elementi in tempo reale.',
         helpStep4Title: '4️⃣ Visualizza dettagli',
-        helpStep4Desc: 'Fai clic su una riga della tabella per visualizzare tutte le informazioni dettagliate.',
+        helpStep4Desc: 'Fai clic su una riga della tabella per vedere tutti i dettagli. Puoi anche fare clic sulla copertina del libro per ingrandirla ad alta risoluzione.',
         helpStep5Title: '5️⃣ Esporta',
-        helpStep5Desc: 'Esporta i dati visualizzati in formato CSV.',
+        helpStep5Desc: 'Esporta i dati della collezione visualizzati in un file CSV compatibile con Excel.',
         helpFeaturesTitle: '✨ Caratteristiche principali',
-        helpFeature1: '🔄 Salvataggio automatico: l\'ultimo file aperto viene ricaricato automaticamente (valido per 7 giorni)',
-        helpFeature2: '🌐 Multilingue: supporto per inglese, coreano, giapponese, tedesco, francese, spagnolo, italiano, portoghese e cinese tradizionale.',
-        helpFeature3: '🔒 Privacy: tutti i dati vengono elaborati localmente nel tuo browser',
-        helpFeature4: '📱 Responsive: compatibile con varie dimensioni dello schermo (consigliato: 960px+)',
+        helpFeature1: '🔄 Salvataggio automatico: l\'ultimo file aperto viene salvato nel browser e ricaricato automaticamente (valido per 7 giorni)',
+        helpFeature2: '🌐 Multilingue: supporto per italiano, inglese, coreano, giapponese, cinese semplificato, cinese tradizionale, tedesco, francese, spagnolo e portoghese',
+        helpFeature3: '🔒 Massima privacy: tutti i dati vengono elaborati solo localmente nel tuo browser (nessun caricamento su server)',
+        helpFeature4: '📱 Design reattivo: supporta varie dimensioni dello schermo (consigliato: 960px o superiore)',
 
         dateFormat: 'it-IT'
     },
@@ -1463,20 +1463,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 Guia do usuário',
         helpStep1Title: '1️⃣ Abrir arquivo',
-        helpStep1Desc: 'Clique no botão "📂 Abrir arquivo JSON" e selecione um backup exportado do MyLibrary.',
+        helpStep1Desc: 'Clique no botão "📂 Abrir arquivo JSON" e selecione um backup (.json) exportado do aplicativo MyLibrary.',
         helpStep2Title: '2️⃣ Explorar dados',
-        helpStep2Desc: 'Clique nas abas (Coleção, Lista de desejos, Empréstimos, etc.) para ver cada categoria.',
+        helpStep2Desc: 'Clique nas abas (Coleção, Empréstimos, Tomadores, Lista de desejos, Localizações) para navegar por cada categoria.',
         helpStep3Title: '3️⃣ Pesquisar',
-        helpStep3Desc: 'Digite título, autor, ISBN, etc. para encontrar rapidamente um item.',
+        helpStep3Desc: 'Digite título, autor, editora, ISBN, etc. no campo de busca para encontrar itens rapidamente em tempo real.',
         helpStep4Title: '4️⃣ Ver detalhes',
-        helpStep4Desc: 'Clique em uma linha da tabela para ver todas as informações detalhadas desse item.',
+        helpStep4Desc: 'Clique em uma linha da tabela para ver todos os detalhes. Você também pode clicar na capa do livro para ampliá-la em alta resolução.',
         helpStep5Title: '5️⃣ Exportar',
-        helpStep5Desc: 'Exporte os dados exibidos para CSV.',
+        helpStep5Desc: 'Exporte os dados da coleção exibidos para um arquivo CSV compatível com Excel.',
         helpFeaturesTitle: '✨ Funcionalidades principais',
-        helpFeature1: '🔄 Auto-salvamento: o último arquivo aberto é carregado automaticamente (válido por 7 dias)',
-        helpFeature2: '🌐 Multilíngue: suporte para inglês, coreano, japonês, alemão, francês, espanhol, português e chinês tradicional.',
-        helpFeature3: '🔒 Privacidade: todos os dados são processados localmente no navegador',
-        helpFeature4: '📱 Responsivo: funciona em várias larguras de tela (recomendado: 960px+)',
+        helpFeature1: '🔄 Salvamento automático: o último arquivo aberto é salvo no navegador e recarregado automaticamente (válido por 7 dias)',
+        helpFeature2: '🌐 Multilíngue: suporte para português, inglês, coreano, japonês, chinês simplificado, chinês tradicional, alemão, francês, espanhol e italiano',
+        helpFeature3: '🔒 Privacidade total: todos os dados são processados apenas localmente no navegador (sem envio para servidores)',
+        helpFeature4: '📱 Design responsivo: compatível com diversas resoluções de tela (recomendado: 960px ou mais)',
 
         dateFormat: 'pt-PT'
     },
@@ -1645,20 +1645,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 使用指南',
         helpStep1Title: '1️⃣ 打开文件',
-        helpStep1Desc: '点击“📂 打开 JSON 文件”按钮，选择从 MyLibrary 导出的备份文件。',
+        helpStep1Desc: '点击“📂 打开 JSON 文件”按钮，选择从 MyLibrary 应用导出的备份文件（.json）。',
         helpStep2Title: '2️⃣ 探索数据',
-        helpStep2Desc: '点击上方标签页（收藏、愿望清单、借阅等）以查看各类别内容。',
+        helpStep2Desc: '点击上方标签页（收藏、借阅、借阅者、愿望清单、馆藏位置）以浏览各类别数据。',
         helpStep3Title: '3️⃣ 搜索',
-        helpStep3Desc: '在搜索框输入书名、作者、ISBN 等，即可快速找到所需项目。',
+        helpStep3Desc: '在搜索框输入书名、作者、出版社、ISBN 等，即可快速实时查找所需项目。',
         helpStep4Title: '4️⃣ 查看详情',
-        helpStep4Desc: '点击数据行即可查看该项目的完整详细信息。',
+        helpStep4Desc: '点击数据行即可查看该项目的完整详细信息。点击书籍封面还可放大查看高分辨率封面图片。',
         helpStep5Title: '5️⃣ 导出',
-        helpStep5Desc: '将当前页面数据导出为 CSV 文件。',
+        helpStep5Desc: '将当前显示的收藏数据导出为兼容 Excel 的 CSV 表格文件。',
         helpFeaturesTitle: '✨ 主要功能',
-        helpFeature1: '🔄 自动保存：自动加载上次打开的文件（有效期 7 天）',
-        helpFeature2: '🌐 多语言：支持英文、韩文、日文、德文、法文、西班牙文、葡萄牙文、简体中文与繁体中文。',
-        helpFeature3: '🔒 隐私保护：所有数据均在浏览器本地处理',
-        helpFeature4: '📱 响应式设计：支持各种屏幕尺寸（建议 960px 以上）',
+        helpFeature1: '🔄 自动保存：自动在浏览器中保存并加载上次打开的文件（有效期 7 天）',
+        helpFeature2: '🌐 多语言支持：支持简体中文、繁体中文、英文、韩文、日文、德文、法文、西班牙文、意大利文与葡萄牙文',
+        helpFeature3: '🔒 隐私安全：所有数据均在浏览器本地安全处理（绝不上传至任何外部服务器）',
+        helpFeature4: '📱 响应式设计：自适应电脑桌面及平板等多种屏幕尺寸（推荐分辨率：960px 以上）',
 
         dateFormat: 'zh-CN'
     },
@@ -1827,20 +1827,20 @@ const localeOverrides = {
         // Help
         helpTitle: '📖 使用指南',
         helpStep1Title: '1️⃣ 開啟檔案',
-        helpStep1Desc: '點擊「📂 開啟 JSON 檔案」按鈕，選擇從 MyLibrary 匯出的備份檔案。',
+        helpStep1Desc: '點擊「📂 開啟 JSON 檔案」按鈕，選擇從 MyLibrary 應用程式匯出的備份檔案（.json）。',
         helpStep2Title: '2️⃣ 探索資料',
-        helpStep2Desc: '點擊上方分頁（收藏、願望清單、借閱等）以查看各類別內容。',
+        helpStep2Desc: '點擊上方分頁（收藏、借閱、借閱者、願望清單、館藏位置）以瀏覽各類別資料。',
         helpStep3Title: '3️⃣ 搜尋',
-        helpStep3Desc: '在搜尋框輸入標題、作者、ISBN 等，即可快速找到欲查詢項目。',
+        helpStep3Desc: '在搜尋框輸入書名、作者、出版社、ISBN 等，即可快速即時查詢所需項目。',
         helpStep4Title: '4️⃣ 檢視細節',
-        helpStep4Desc: '點擊資料列即可查看該項目的完整細節資訊。',
+        helpStep4Desc: '點擊資料列即可查看該項目的完整細節資訊。點擊書籍封面亦可放大檢視高解析度封面圖片。',
         helpStep5Title: '5️⃣ 匯出',
-        helpStep5Desc: '將目前畫面資料匯出為 CSV 檔案。',
+        helpStep5Desc: '將目前顯示的收藏資料匯出為相容 Excel 的 CSV 試算表檔案。',
         helpFeaturesTitle: '✨ 主要功能',
-        helpFeature1: '🔄 自動儲存：自動載入上次開啟的檔案（有效期限 7 天）',
-        helpFeature2: '🌐 多語系：支援英文、韓文、日文、德文、法文、西班牙文、葡萄牙文、簡體中文與繁體中文。',
-        helpFeature3: '🔒 隱私保護：所有資料皆在瀏覽器中本地處理',
-        helpFeature4: '📱 響應式：支援各種畫面尺寸（建議 960px 以上）',
+        helpFeature1: '🔄 自動儲存：自動在瀏覽器中儲存並載入上次開啟的檔案（有效期限 7 天）',
+        helpFeature2: '🌐 多語系支援：支援繁體中文、簡體中文、英文、韓文、日文、德文、法文、西班牙文、義大利文與葡萄牙文',
+        helpFeature3: '🔒 隱私安全：所有資料皆在瀏覽器本地安全處理（絕不上傳至任何外部伺服器）',
+        helpFeature4: '📱 響應式設計：自適應電腦桌面及平板等多種螢幕尺寸（建議解析度：960px 以上）',
 
         dateFormat: 'zh-TW'
     }
@@ -2076,6 +2076,15 @@ function initializeEventListeners() {
             }
         });
     }
+
+    // ESC 키로 열려 있는 모달(도움말, 상세보기, 이미지 뷰어) 닫기
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideHelp();
+            closeModal();
+            closeImageViewer();
+        }
+    });
 }
 
 // UI 언어 업데이트
@@ -2092,6 +2101,11 @@ function updateUILanguage() {
     // 검색 입력창 placeholder
     if (elements.searchInput) {
         elements.searchInput.placeholder = t('searchPlaceholder');
+    }
+    
+    // 도움말 버튼 툴팁
+    if (elements.helpBtn) {
+        elements.helpBtn.title = t('helpTitle') || 'Help';
     }
     
     // 웰컴 화면 업데이트
