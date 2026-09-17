@@ -1480,7 +1480,189 @@ const localeOverrides = {
 
         dateFormat: 'pt-PT'
     },
-    zh: {
+    'zh-CN': {
+        appTitle: 'MyLibrary JSON Viewer',
+        openFile: '📂 打开 JSON 文件',
+        exportCsv: '📊 导出 CSV',
+
+        // File Info
+        fileName: '文件名：',
+        filePath: '路径：',
+        backupDate: '备份日期：',
+        backupNotice: '所有借阅状态与逾期信息均依据备份创建时间显示。',
+
+        // Tabs
+        books: '📖 收藏',
+        loans: '📤 借阅',
+        borrowers: '👥 借阅者',
+        wishlist: '⭐ 愿望清单',
+        locations: '📍 馆藏位置',
+
+        // Search
+        searchPlaceholder: '搜索...',
+        clearSearch: '🔄 清除',
+
+        // Welcome
+        welcomeTitle: '📚 MyLibrary JSON Viewer',
+        welcomeDesc: '浏览由 MyLibrary Management 导出的 JSON 备份文件。',
+
+        // Table Headers - Books
+        cover: '封面',
+        title: '书名',
+        author: '作者',
+        publisher: '出版社',
+        isbn: 'ISBN',
+        category: '分类',
+        location: '位置',
+        locationIdLabel: '位置ID',
+        status: '状态',
+
+        // Table Headers - Loans
+        bookTitle: '书名',
+        borrower: '借阅者',
+        loanDate: '借阅日期',
+        dueDate: '应还日期',
+        returnDate: '归还日期',
+
+        // Table Headers - Borrowers
+        info1: '信息1',
+        info2: '信息2',
+        createdDate: '创建时间',
+
+        // Table Headers - Wishlist
+        price: '价格',
+        priority: '优先级',
+        addedDate: '添加时间',
+
+        // Table Headers - Locations
+        name: '名称',
+        description: '描述',
+
+        // Reading Status
+        unread: '未读',
+        reading: '阅读中',
+        read: '已读',
+
+        // Loan Status
+        returned: '已归还',
+        onLoan: '备份时借阅中',
+        overdue: '备份时逾期',
+        overdueDays: '天',
+
+        // Detail Info
+        basicInfo: '基本信息',
+        collectionInfo: '收藏信息',
+        readingRecord: '阅读记录',
+        loanHistory: '借阅历史',
+        otherInfo: '其他信息',
+        mediaType: '媒体类型',
+        rating: '评分',
+        readStatus: '阅读状态',
+        pages: '页数',
+        language: '语言',
+        apiSource: '数据来源',
+        note: '笔记',
+        memo: '备注',
+        publishDate: '出版日期',
+        description: '描述',
+
+        // Reading Record
+        startReadingDate: '开始阅读',
+        finishReadingDate: '完成阅读',
+        emotionTag: '情绪标签',
+        readingNote: '阅读笔记',
+
+        // Media Types
+        mediaTypeBook: '书籍',
+        mediaTypeEbook: '电子书',
+        mediaTypeAudiobook: '有声书',
+        mediaTypeCd: 'CD',
+        mediaTypeVinyl: '黑胶',
+        mediaTypeDvd: 'DVD',
+        mediaTypeBluray: '蓝光',
+        mediaTypeComic: '漫画',
+        mediaTypeManga: '动漫',
+        mediaTypeMagazine: '杂志',
+        mediaTypeOther: '其他',
+
+        // Media Specific
+        ebookInfo: '电子书信息',
+        audioInfo: '音频信息',
+        videoInfo: '视频信息',
+        comicInfo: '漫画信息',
+        fileFormat: '文件格式',
+        fileSize: '文件大小',
+        filePath: '文件路径',
+        artist: '艺术家',
+        albumName: '专辑',
+        trackCount: '曲目数',
+        tracks: '曲目',
+        director: '导演',
+        cast: '演员',
+        runningTime: '片长',
+        minutes: '分钟',
+        volumeNumber: '卷数',
+        volume: '卷',
+        seriesName: '系列',
+        isComplete: '完结状态',
+        completed: '完结',
+        ongoing: '连载中',
+        coverUrl: '封面 URL',
+        highResCoverUrl: '高分辨率封面 URL',
+        localCoverPath: '本地封面路径',
+
+        // Loan Info
+        loanInfo: '借阅信息',
+        bookInfo: '书籍信息',
+        borrowerInfo: '借阅者信息',
+        loanDetail: '借阅详情',
+        borrowerNote: '借阅者备注',
+        loanMemo: '借阅备注',
+        overdueDaysLabel: '逾期天数',
+        overdueTitle: '备份时已超过还书日',
+
+        // Borrower Info
+        borrowerDetail: '借阅者详情',
+        lastBorrowDate: '最后借阅日',
+        totalBorrows: '总借阅次数',
+        times: '次',
+        isActive: '状态',
+        active: '启用',
+        inactive: '停用',
+        isFavorite: '收藏',
+
+        // Location Info
+        locationDetail: '位置信息',
+        room: '房间',
+        shelf: '书架',
+        order: '排序',
+        modifiedDate: '更新日期',
+
+        // Messages
+        noData: '没有可用的数据。',
+        unknown: '未知',
+
+        // Help
+        helpTitle: '📖 使用指南',
+        helpStep1Title: '1️⃣ 打开文件',
+        helpStep1Desc: '点击“📂 打开 JSON 文件”按钮，选择从 MyLibrary 导出的备份文件。',
+        helpStep2Title: '2️⃣ 探索数据',
+        helpStep2Desc: '点击上方标签页（收藏、愿望清单、借阅等）以查看各类别内容。',
+        helpStep3Title: '3️⃣ 搜索',
+        helpStep3Desc: '在搜索框输入书名、作者、ISBN 等，即可快速找到所需项目。',
+        helpStep4Title: '4️⃣ 查看详情',
+        helpStep4Desc: '点击数据行即可查看该项目的完整详细信息。',
+        helpStep5Title: '5️⃣ 导出',
+        helpStep5Desc: '将当前页面数据导出为 CSV 文件。',
+        helpFeaturesTitle: '✨ 主要功能',
+        helpFeature1: '🔄 自动保存：自动加载上次打开的文件（有效期 7 天）',
+        helpFeature2: '🌐 多语言：支持英文、韩文、日文、德文、法文、西班牙文、葡萄牙文、简体中文与繁体中文。',
+        helpFeature3: '🔒 隐私保护：所有数据均在浏览器本地处理',
+        helpFeature4: '📱 响应式设计：支持各种屏幕尺寸（建议 960px 以上）',
+
+        dateFormat: 'zh-CN'
+    },
+    'zh-TW': {
         appTitle: 'MyLibrary JSON Viewer',
         openFile: '📂 開啟 JSON 檔案',
         exportCsv: '📊 匯出 CSV',
@@ -1656,7 +1838,7 @@ const localeOverrides = {
         helpStep5Desc: '將目前畫面資料匯出為 CSV 檔案。',
         helpFeaturesTitle: '✨ 主要功能',
         helpFeature1: '🔄 自動儲存：自動載入上次開啟的檔案（有效期限 7 天）',
-        helpFeature2: '🌐 多語系：支援英文、韓文、日文、德文、法文、西班牙文、葡萄牙文與繁體中文。',
+        helpFeature2: '🌐 多語系：支援英文、韓文、日文、德文、法文、西班牙文、葡萄牙文、簡體中文與繁體中文。',
         helpFeature3: '🔒 隱私保護：所有資料皆在瀏覽器中本地處理',
         helpFeature4: '📱 響應式：支援各種畫面尺寸（建議 960px 以上）',
 
@@ -1670,6 +1852,9 @@ Object.entries(localeOverrides).forEach(([lang, overrides]) => {
         ...overrides
     };
 });
+
+// 하위 호환성 별칭: 'zh'는 기본적으로 번체('zh-TW')로 연결
+translations['zh'] = translations['zh-TW'];
 
 // CSV header keys are ordered to match the Android backup export fields.
 const csvHeaderKeys = [
@@ -1753,7 +1938,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (lang.startsWith('es')) return 'es';
         if (lang.startsWith('it')) return 'it';
         if (lang.startsWith('pt')) return 'pt';
-        if (lang.startsWith('zh')) return 'zh';
+        if (lang.startsWith('zh')) {
+            // 번체 감지 (대만, 홍콩, 마카오, Hant)
+            if (lang.includes('tw') || lang.includes('hk') || lang.includes('mo') || lang.includes('hant')) {
+                return 'zh-TW';
+            }
+            return 'zh-CN';
+        }
         return 'en';
     }
     
@@ -1762,7 +1953,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const systemLanguage = detectSystemLanguage();
     
     // localStorage에 저장된 값이 있으면 우선 사용, 없으면 시스템 언어 사용
-    currentLanguage = savedLanguage || systemLanguage;
+    let initialLang = savedLanguage || systemLanguage;
+    // 이전 'zh' 값이 저장되어 있다면 'zh-TW'로 자동 보정
+    if (initialLang === 'zh') {
+        initialLang = 'zh-TW';
+    }
+    currentLanguage = translations[initialLang] ? initialLang : 'en';
     
     console.log('System language detected:', systemLanguage);
     console.log('Selected language:', currentLanguage);
