@@ -2676,72 +2676,96 @@ function getLoanStatusText(loan) {
     return t('onLoan');
 }
 
+// 책 또는 위시리스트 유효 표지 이미지 소스 반환 (우선순위: localCoverBase64 > highResCoverUrl > coverUrl)
+function getEffectiveCoverSrc(item, preferHighRes = false) {
+    if (!item) return null;
+
+    // 1. localCoverBase64 처리 (커스텀 촬영/갤러리 이미지 - 최우선 순위)
+    if (item.localCoverBase64 && typeof item.localCoverBase64 === 'string') {
+        const trimmed = item.localCoverBase64.trim();
+        if (trimmed.length > 0) {
+            if (trimmed.startsWith('data:image/')) {
+                return trimmed;
+            }
+            // Base64 매직 넘버 기반 MIME 타입 추론
+            let mime = 'image/jpeg';
+            if (trimmed.startsWith('/9j/')) {
+                mime = 'image/jpeg';
+            } else if (trimmed.startsWith('iVBOR')) {
+                mime = 'image/png';
+            } else if (trimmed.startsWith('R0lGOD')) {
+                mime = 'image/gif';
+            } else if (trimmed.startsWith('UklGR')) {
+                mime = 'image/webp';
+            }
+            return `data:${mime};base64,${trimmed}`;
+        }
+    }
+
+    // 2. 온라인 URL 처리 (iOS 및 레거시 안드로이드 백업 100% 호환)
+    const isValidWebUrl = (url) => {
+        if (!url || typeof url !== 'string') return false;
+        const trimmed = url.trim();
+        if (trimmed.startsWith('/') || trimmed.startsWith('file://')) return false;
+        return trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('//');
+    };
+
+    const highRes = isValidWebUrl(item.highResCoverUrl) ? item.highResCoverUrl.trim() : null;
+    const standard = isValidWebUrl(item.coverUrl) ? item.coverUrl.trim() : null;
+
+    if (preferHighRes) {
+        return highRes || standard || null;
+    } else {
+        return highRes || standard || null;
+    }
+}
+
 // 책 표지 이미지 (테이블용 - 작은 크기)
 function getBookCoverImage(book) {
-    // 우선순위: highResCoverUrl > coverUrl > localCoverPath
-    const imageUrl = book.highResCoverUrl || book.coverUrl || book.localCoverPath;
+    const src = getEffectiveCoverSrc(book, false);
     
-    if (!imageUrl) {
+    if (!src) {
         return '<div class="book-cover-placeholder">📚</div>';
     }
     
-    // localCoverPath는 Android 경로이므로 표시 불가
-    if (imageUrl.startsWith('/') || imageUrl.startsWith('file://')) {
-        return '<div class="book-cover-placeholder">📚</div>';
-    }
-    
-    return `<img src="${escapeHtml(imageUrl)}" alt="Cover" class="book-cover-thumb" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'book-cover-placeholder\\'>📚</div>';">`;
+    return `<img src="${escapeHtml(src)}" alt="Cover" class="book-cover-thumb" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'book-cover-placeholder\\'>📚</div>';">`;
 }
 
 // 위시리스트 표지 이미지 (테이블용 - 작은 크기)
 function getWishlistCoverImage(item) {
-    // 우선순위: highResCoverUrl > coverUrl > localCoverPath
-    const imageUrl = item.highResCoverUrl || item.coverUrl || item.localCoverPath;
+    const src = getEffectiveCoverSrc(item, false);
     
-    if (!imageUrl) {
+    if (!src) {
         return '<div class="book-cover-placeholder">⭐</div>';
     }
     
-    // localCoverPath는 Android 경로이므로 표시 불가
-    if (imageUrl.startsWith('/') || imageUrl.startsWith('file://')) {
-        return '<div class="book-cover-placeholder">⭐</div>';
-    }
-    
-    return `<img src="${escapeHtml(imageUrl)}" alt="Cover" class="book-cover-thumb" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'book-cover-placeholder\\'>⭐</div>';">`;
+    return `<img src="${escapeHtml(src)}" alt="Cover" class="book-cover-thumb" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'book-cover-placeholder\\'>⭐</div>';">`;
 }
 
 // 책 표지 이미지 (상세보기용 - 큰 크기)
 function getBookCoverImageLarge(book) {
-    const imageUrl = book.highResCoverUrl || book.coverUrl || book.localCoverPath;
+    const src = getEffectiveCoverSrc(book, true);
     
-    if (!imageUrl) {
-        return '<div class="book-cover-large-placeholder">📚</div>';
-    }
-    
-    if (imageUrl.startsWith('/') || imageUrl.startsWith('file://')) {
+    if (!src) {
         return '<div class="book-cover-large-placeholder">📚</div>';
     }
     
     return `<div class="book-cover-zoom-wrapper" onclick="openImageViewer(window.currentDetailBook)">
-        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(book.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>📚</div>';">
+        <img src="${escapeHtml(src)}" alt="${escapeHtml(book.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>📚</div>';">
         <div class="book-cover-zoom-icon" aria-hidden="true">🔍</div>
     </div>`;
 }
 
 // 위시리스트 표지 이미지 (상세보기용 - 큰 크기)
 function getWishlistCoverImageLarge(item) {
-    const imageUrl = item.highResCoverUrl || item.coverUrl || item.localCoverPath;
+    const src = getEffectiveCoverSrc(item, true);
     
-    if (!imageUrl) {
-        return '<div class="book-cover-large-placeholder">⭐</div>';
-    }
-    
-    if (imageUrl.startsWith('/') || imageUrl.startsWith('file://')) {
+    if (!src) {
         return '<div class="book-cover-large-placeholder">⭐</div>';
     }
     
     return `<div class="book-cover-zoom-wrapper" onclick="openImageViewer(window.currentDetailBook)">
-        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>⭐</div>';">
+        <img src="${escapeHtml(src)}" alt="${escapeHtml(item.title)}" class="book-cover-large" onerror="this.style.display='none'; this.outerHTML='<div class=\\'book-cover-large-placeholder\\'>⭐</div>';">
         <div class="book-cover-zoom-icon" aria-hidden="true">🔍</div>
     </div>`;
 }
@@ -3202,10 +3226,6 @@ function sortWishlist(wishlist) {
 /**
  * 고해상도 이미지 뷰어 모달 열기
  * @param {Object} book - 책 또는 위시리스트 아이템 객체
- * @param {string} book.highResCoverUrl - 고해상도 표지 URL
- * @param {string} book.coverUrl - 일반 표지 URL
- * @param {string} book.localCoverPath - 로컬 표지 경로
- * @param {string} book.title - 책 제목
  */
 function openImageViewer(book) {
     const modal = document.getElementById('imageViewerModal');
@@ -3213,35 +3233,27 @@ function openImageViewer(book) {
     
     if (!modal || !container) return;
     
-    // URL 우선순위: highResCoverUrl > coverUrl > localCoverPath
-    const imageUrls = [
-        book.highResCoverUrl,
-        book.coverUrl,
-        book.localCoverPath
-    ].filter(url => url && !url.startsWith('/') && !url.startsWith('file://'));
-    
-    if (imageUrls.length === 0) {
+    const effectiveCover = getEffectiveCoverSrc(book, true);
+    if (!effectiveCover) {
         return; // 유효한 이미지 URL이 없으면 뷰어를 열지 않음
     }
     
-    // Google Books URL 처리 - zoom 파라미터 변경
-    const googleBookUrls = imageUrls.filter(url => 
-        url.includes('books.google.') && url.includes('/books/content')
-    );
+    // 커스텀 Base64 이미지가 아니고, Google Books URL인 경우만 크기 선택 옵션 제공
+    const isBase64 = effectiveCover.startsWith('data:image/');
+    const isGoogleBooks = !isBase64 && effectiveCover.includes('books.google.') && effectiveCover.includes('/books/content');
     
     let sizeOptions = [];
     
-    if (googleBookUrls.length > 0) {
-        const baseUrl = googleBookUrls[0];
+    if (isGoogleBooks) {
         sizeOptions = [
-            { label: 'large', url: makeGoogleZoomedUrl(baseUrl, 3), zoom: 3 },
-            { label: 'small', url: makeGoogleZoomedUrl(baseUrl, 2), zoom: 2 },
-            { label: 'thumbnail', url: makeGoogleZoomedUrl(baseUrl, 1), zoom: 1 }
+            { label: 'large', url: makeGoogleZoomedUrl(effectiveCover, 3), zoom: 3 },
+            { label: 'small', url: makeGoogleZoomedUrl(effectiveCover, 2), zoom: 2 },
+            { label: 'thumbnail', url: makeGoogleZoomedUrl(effectiveCover, 1), zoom: 1 }
         ];
     } else {
-        // Google Books가 아닌 경우 단일 URL만 표시
+        // Base64 커스텀 표지 또는 일반 웹 이미지 URL인 경우 단일 URL로 표시 (상단 크기 선택기 숨김)
         sizeOptions = [
-            { label: 'image', url: imageUrls[0], zoom: null }
+            { label: 'image', url: effectiveCover, zoom: null }
         ];
     }
     
@@ -3250,7 +3262,7 @@ function openImageViewer(book) {
     function renderViewer() {
         container.innerHTML = '';
         
-        // 크기 선택 UI (Google Books인 경우만)
+        // 크기 선택 UI (Google Books인 경우만 표시, 커스텀 표지일 때는 숨김)
         if (sizeOptions.length > 1) {
             const selectorDiv = document.createElement('div');
             selectorDiv.className = 'image-size-selector';
